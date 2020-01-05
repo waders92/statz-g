@@ -1,0 +1,14 @@
+************************************ TO DO ********************************
+
+Rename files accordingly
+Fix Routing
+Install Cordova for Devapp debugging
+Use Mongo for DB
+Add mongoose for models
+Add user authentication
+Add Round?
+Edit Round?
+
+****************************** COMPLETED ***********************************
+
+Rename Tabs - Homme / Add Round / History

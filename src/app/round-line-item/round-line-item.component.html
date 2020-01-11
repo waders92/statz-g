@@ -1,0 +1,16 @@
+<div class="round-input-fields">
+  <div>
+    <h3>Enter Round Information</h3>
+  </div>
+  <div *ngFor="let item of roundItems.data; let index = index; trackBy: trackByFn">
+    <ion-item>
+      <ion-label position="floating">{{ item }}</ion-label>
+      <ion-input *ngIf="item === 'Course'" type="text" [(ngModel)]="statsDict[item]"></ion-input>
+      <ion-input *ngIf="item !== 'Course'" type="number" [(ngModel)]="statsDict[item]"></ion-input>
+    </ion-item>
+  </div>
+  <div class="button-container">
+    <ion-button expand="full" color="primary" size="medium" (click)="dismiss()">Post New Round</ion-button>
+    <ion-button expand="full" color="medium" size="medium" (click)="cancel()">Cancel</ion-button>
+  </div>
+</div>

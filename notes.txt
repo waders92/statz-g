@@ -1,7 +1,6 @@
 ************************************ TO DO ********************************
 
-Rename files accordingly
-Fix Routing
+Return stats from modal
 Install Cordova for Devapp debugging
 Use Mongo for DB
 Add mongoose for models
@@ -12,3 +11,11 @@ Edit Round?
 ****************************** COMPLETED ***********************************
 
 Rename Tabs - Homme / Add Round / History
+Rename files accordingly
+Fix Routing
+Have new round implement a modal for adding stats
+
+
+
+
+******************************** Code Snippets *****************************

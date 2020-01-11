@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { NewRoundComponent } from './new-round.component';
+import { RoundLineItemComponent } from './round-line-item.component';
 
-describe('NewRoundComponent', () => {
-  let component: NewRoundComponent;
-  let fixture: ComponentFixture<NewRoundComponent>;
+describe('RoundLineItemComponent', () => {
+  let component: RoundLineItemComponent;
+  let fixture: ComponentFixture<RoundLineItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewRoundComponent],
+      declarations: [ RoundLineItemComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NewRoundComponent);
+    fixture = TestBed.createComponent(RoundLineItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

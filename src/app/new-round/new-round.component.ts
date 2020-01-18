@@ -29,8 +29,10 @@ export class NewRoundComponent implements OnInit {
 
     modal.onDidDismiss()
     .then((data) => {
-      const newRound = this.roundConverter.convertRoundFromJson(data);
-      console.log(newRound);
+      if (data && data.data !== undefined) {
+        const newRound = this.roundConverter.convertRoundFromJson(data);
+        console.log(newRound);
+      }
     });
 
     return await modal.present();

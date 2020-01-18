@@ -6,4 +6,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <div class="landing-page-content">
+    <div>
+      <h3>History</h3>
+    </div>
+    <div *ngIf="rounds.length > 0">
+      <div *ngFor="let round of rounds">
+        <p>{{ round.userId }}<br>
+           {{ round.course }}<br>
+           {{ round.score }}
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-content>

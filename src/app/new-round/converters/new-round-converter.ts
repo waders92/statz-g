@@ -18,7 +18,7 @@ export class NewRoundConverter {
     for (let i = 0; i <= categories.length - 1; i++) {
       const obj = categories[i];
       const converted = obj.split(' ').join('_').toLowerCase();
-      statsDict[converted] = values[i] as any;
+      statsDict[converted] = values[i];
     }
 
     return statsDict;

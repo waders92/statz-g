@@ -1,4 +1,6 @@
 export enum RoundStatCategories {
+  Id = 'Id',
+  Date = 'Date',
   Course = 'Course',
   Score = 'Score',
   FairwaysInReg = 'Fairways In Regulation',

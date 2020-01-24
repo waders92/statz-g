@@ -4,18 +4,28 @@ ionic serve --devapp
 
 ************************************ TO DO ********************************
 
-
-Use Mongo for DB
-Add mongoose for models
-Add a round and have it save to local mongodb
-Add component to display rounds in history - with a sub details component
+Add component to display rounds in history - with a sub details component  THIS!!!!
+Date Picker for new / edited rounds
+Get Date to populate on edit when open picker
+Show Date Correctle, shows in edit
 Add user authentication
-Add Round?
-Edit Round?
+Hookup remote mongodb
+Get rounds by userId
+Show averages....where?
+Showhistory rounds by year and month
+Refactor round.controller.js
 
 ****************************** COMPLETED ***********************************
 
-
+Change button states for new or edit
+History page updates automatically for new and edited rounds
+Delete Roud?
+Toast for actions?
+Edit Round?
+Add Round?
+Use Mongo for DB
+Add mongoose for models
+Add a round and have it save to local mongodb
 Install Cordova for Devapp debugging
 install postman
 show data on screen - history (have it in subscribe)

@@ -1,6 +1,12 @@
 <div class="round-input-fields">
   <div>
-    <h3>Enter Round Information</h3>
+    <h3> {{ isEdit ? 'Edit Round' : 'Add New Round' }}</h3>
+  </div>
+  <div>
+    <ion-item>
+      <ion-label position="floating">Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+    </ion-item>
   </div>
   <div *ngFor="let item of roundItems.data; let index = index; trackBy: trackByFn">
     <ion-item>
@@ -10,7 +16,9 @@
     </ion-item>
   </div>
   <div class="button-container">
-    <ion-button expand="full" color="primary" size="medium" (click)="dismiss()">Post New Round</ion-button>
+    <ion-button expand="full" color="primary" size="medium" (click)="dismiss()">
+      {{ isEdit ? 'Post Edited Round' : 'Post New Round' }}
+    </ion-button>
     <ion-button expand="full" color="medium" size="medium" (click)="cancel()">Cancel</ion-button>
   </div>
 </div>

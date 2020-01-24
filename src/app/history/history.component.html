@@ -13,10 +13,19 @@
     </div>
     <div *ngIf="rounds.length > 0">
       <div *ngFor="let round of rounds">
-        <p>{{ round.userId }}<br>
-           {{ round.course }}<br>
-           {{ round.score }}
+        <p>User Id: {{ round.userId }}<br>
+           Date: {{ round.date }}<br> 
+           Course: {{ round.course }}<br>
+           Score: {{ round.score }}<br>
+           Fwys: {{ round.fairwaysInReg }}<br>
+           Greens: {{ round.greensInReg }}<br>
+           Putts: {{ round.totalPutts}}<br>
+           Birds: {{ round.totalBirdies }}<br>
+           Pars: {{ round.totalPars}}<br>
         </p>
+        <div class="edit-round-button">
+          <ion-button expand="full" color="medium" (click)="editRound(round)">Edit Round</ion-button>
+        </div>
       </div>
     </div>
   </div>

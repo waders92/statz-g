@@ -1,33 +1,31 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = process.env.PORT || 3000;
-const routes = require('./mongo-database/routes/app');
 const bodyParser = require('body-parser');
 
-const corsOptions = {};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/', routes);
 
-const rounds = [{
-  id: 1,
-  userId: "",
-  course: "Test",
-  score: 80,
-  fairwaysInReg: 10,
-  greensInReg: 9,
-  totalPutts: 32,
-  totalBirdies: 1,
-  totalPars: 9,
-}];
+const config = require('./config.js');
+const mongoose = require('mongoose');
+require('./routes/round.routes')(app);
 
-// app.get('/rounds', (req, res) => {
-//   res.json(rounds);
-// });
+mongoose.Promise = global.Promise;
 
-app.listen(port, () => {
-  console.log(`Server is up on port ${port}`);
-})
+mongoose.connect(config.url, {
+    useNewUrlParser: true
+}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
+});
+
+app.get('/', (req, res) => {
+  res.json({"message": "Welcome to Statz-G"});
+});
+
+app.listen(config.serverport, () => {
+  console.log("Server is listening on port 3000");
+});

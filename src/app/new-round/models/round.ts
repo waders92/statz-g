@@ -1,5 +1,5 @@
 export interface IRound {
-  id: number;
+  _id: string;
   userId: string;
   course: string;
   score: number;

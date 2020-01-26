@@ -4,6 +4,9 @@ import { ModalController, Events, ToastController } from '@ionic/angular';
 import { RoundLineItemComponent } from '../round-line-item/round-line-item.component';
 import { NewRoundConverter } from './converters/new-round-converter';
 import { RoundService } from '../services/round-service';
+import { Store, State } from '@ngrx/store';
+import { RoundState } from '../reducers/rounds.reducer';
+import { AddRound } from '../actions/round.actions';
 
 @Component({
   selector: 'app-new-round',
@@ -18,7 +21,7 @@ export class NewRoundComponent implements OnInit {
     private modalController: ModalController,
     private roundConverter: NewRoundConverter,
     private roundService: RoundService,
-    private events: Events,
+    private store: Store<RoundState>,
     private toastCtrl: ToastController
     ) {}
 
@@ -39,8 +42,7 @@ export class NewRoundComponent implements OnInit {
       if (data && data.data !== undefined) {
         const newRound = this.roundConverter.convertRoundFromJson(data);
         this.roundService.addRound(newRound).subscribe((round) => {
-          this.events.publish('new-round', round);
-          // redirect to history page?
+          this.store.dispatch(new AddRound(newRound));
           this.showToastForNewRound();
         });
       }

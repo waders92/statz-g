@@ -48,6 +48,11 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/home',
     pathMatch: 'full'
+  },
+  {
+    path: 'history',
+    redirectTo: '/tabs/history',
+    pathMatch: 'full'
   }
 ];
 

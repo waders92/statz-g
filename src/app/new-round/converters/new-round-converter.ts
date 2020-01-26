@@ -27,7 +27,7 @@ export class NewRoundConverter {
   private create(roundData: IStatsDict): IRound {
     return {
       _id: roundData.id,
-      userId: '',
+      userId: roundData.userId,
       course: roundData.course,
       score: roundData.score,
       fairwaysInReg: roundData.fairways_in_regulation,

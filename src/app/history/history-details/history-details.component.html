@@ -1,0 +1,20 @@
+<div class="landing-page-content">
+  <h3>Round Details</h3>
+  <p *ngIf="round">
+    Date: {{ round.date }}<br> 
+    Course: {{ round.course }}<br>
+    Score: {{ round.score }}<br>
+    Fwys: {{ round.fairwaysInReg }}<br>
+    Greens: {{ round.greensInReg }}<br>
+    Putts: {{ round.totalPutts}}<br>
+    Birds: {{ round.totalBirdies }}<br>
+    Pars: {{ round.totalPars}}<br>
+    Putts: {{ round.totalPutts }}
+  </p>
+  <div class="navigate-back">
+    <ion-button expand="full" color="medium" [routerLink]="['../../tabs/history']">Back To History</ion-button>
+  </div>
+  <div class="edit-round-button">
+    <ion-button expand="full" color="medium" (click)="editRound(round)">Edit Round</ion-button>
+  </div>
+</div>

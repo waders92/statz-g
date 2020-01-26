@@ -5,7 +5,7 @@ module.exports = (app) => {
 
   app.get('/rounds', rounds.findAll);
 
-  // app.get('/rounds/:roundId', rounds.findOne);
+  app.get('/rounds/:roundId', rounds.findOne);
 
   app.put('/rounds/:roundId', rounds.update);
 

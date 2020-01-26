@@ -13,18 +13,13 @@
     </div>
     <div *ngIf="rounds.length > 0">
       <div *ngFor="let round of rounds">
-        <p>User Id: {{ round.userId }}<br>
-           Date: {{ round.date }}<br> 
-           Course: {{ round.course }}<br>
-           Score: {{ round.score }}<br>
-           Fwys: {{ round.fairwaysInReg }}<br>
-           Greens: {{ round.greensInReg }}<br>
-           Putts: {{ round.totalPutts}}<br>
-           Birds: {{ round.totalBirdies }}<br>
-           Pars: {{ round.totalPars}}<br>
+        <p class="round-details">
+          <span class="details">{{ round.date |  date: 'M/dd/yyyy' }}</span>
+          <span class="details">{{ round.course }}</span>
+          <span class="score-span">{{ round.score }}</span>
         </p>
         <div class="edit-round-button">
-          <ion-button expand="full" color="medium" (click)="editRound(round)">Edit Round</ion-button>
+          <ion-button expand="full" color="medium" [routerLink]="['/round-details', round._id]">View Round</ion-button>
         </div>
       </div>
     </div>

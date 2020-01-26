@@ -79,6 +79,27 @@ exports.update = (req, res) => {
     });
 };
 
+exports.findOne = (req, res) => {
+    Round.findById(req.params.roundId)
+    .then(round => {
+        if(!round) {
+            return res.status(404).send({
+                message: "Round not found with id " + req.params.roundId
+            });            
+        }
+        res.send(round);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Round not found with id " + req.params.roundId
+            });                
+        }
+        return res.status(500).send({
+            message: "Something wrong retrieving round with id " + req.params.roundId
+        });
+    });
+};
+
 function sendErrorMessage(res, e) {
     res.status(500).send({
         message: e.message || "Something wrong while interacting with rounds."

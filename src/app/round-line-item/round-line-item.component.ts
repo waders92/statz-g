@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { RoundStatCategories } from '../new-round/models/round-type-enums';
+import { RoundLogicService } from '../services/round-logic.service';
 
 @Component({
   selector: 'app-round-line-item',
@@ -16,7 +17,7 @@ export class RoundLineItemComponent implements OnInit {
   public statsDict: { [key: string]: number | string; } = {};
 
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private logicService: RoundLogicService) { }
 
   ngOnInit() {
     if (this.roundData) {
@@ -29,8 +30,8 @@ export class RoundLineItemComponent implements OnInit {
   }
 
   public dismiss() {
-
-    if (!this.verifyInputs()) {
+    const isFormVerified = this.logicService.verifyInputs(this.statsDict, this.date);
+    if (!isFormVerified) {
       alert('Must enter all values');
       return;
     }
@@ -45,23 +46,6 @@ export class RoundLineItemComponent implements OnInit {
 
   public cancel() {
     this.modalController.dismiss();
-  }
-
-  private verifyInputs(): boolean {
-    if (
-      !this.date ||
-      !this.statsDict[RoundStatCategories.Course] ||
-      !this.statsDict[RoundStatCategories.FairwaysInReg] ||
-      !this.statsDict[RoundStatCategories.GreeensInReg] ||
-      !this.statsDict[RoundStatCategories.Score] ||
-      !this.statsDict[RoundStatCategories.TotalBirdies] ||
-      !this.statsDict[RoundStatCategories.TotalPars] ||
-      !this.statsDict[RoundStatCategories.TotalPutts]
-    ) {
-      return false;
-    }
-
-    return true;
   }
 
   private constructStatsDict(): void {

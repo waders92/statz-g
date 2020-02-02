@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { RoundService } from '../services/round-service';
+import { Component, OnInit } from '@angular/core';
 import { IRound } from '../new-round/models/round';
+import { RoundLogicService } from '../services/round-logic.service';
 
 @Component({
   selector: 'app-history',
@@ -12,11 +12,11 @@ export class HistoryComponent implements OnInit {
 
   public rounds: IRound[];
 
-  constructor(private roundService: RoundService) {}
+  constructor(private logicService: RoundLogicService) {}
 
   ngOnInit() {
-    this.roundService.load();
-    this.roundService.getRounds().subscribe((data) => {
+    this.logicService.load();
+    this.logicService.getRounds().subscribe((data) => {
       this.rounds = data;
     });
   }

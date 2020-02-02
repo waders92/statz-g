@@ -6,7 +6,8 @@ export enum RoundActionTypes {
   LoadRoundsSuccess = '[Round] Load Rounds Success',
   LoadRoundsFailure = '[Round] Load Rounds Failure',
   AddRound = '[Round] Add Round',
-  UpdateRound = '[Round] Update Round'
+  UpdateRound = '[Round] Update Round',
+  GetRound = '[Round] Get Round'
 }
 
 export class LoadRoundsBegin implements Action {
@@ -32,7 +33,7 @@ export class LoadRoundsFailure implements Action {
 export class AddRound implements Action {
   readonly type = RoundActionTypes.AddRound;
 
-  constructor(public round: IRound) {
+  constructor(public round: IRound | any) {
 
   }
 }
@@ -45,4 +46,12 @@ export class UpdateRound implements Action {
   }
 }
 
-export type RoundActions = AddRound | UpdateRound | LoadRoundsBegin | LoadRoundsSuccess | LoadRoundsFailure;
+export class GetRound implements Action {
+   readonly type = RoundActionTypes.GetRound;
+
+  constructor(public round: IRound) {
+
+  }
+}
+
+export type RoundActions = AddRound | UpdateRound | GetRound | LoadRoundsBegin | LoadRoundsSuccess | LoadRoundsFailure;

@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NewRoundComponent } from './new-round.component';
-import { NewRoundConverter } from './converters/new-round-converter';
 
 @NgModule({
   imports: [
@@ -13,7 +12,6 @@ import { NewRoundConverter } from './converters/new-round-converter';
     FormsModule,
     RouterModule.forChild([{ path: '', component: NewRoundComponent }])
   ],
-  declarations: [NewRoundComponent],
-  providers: [NewRoundConverter]
+  declarations: [NewRoundComponent]
 })
 export class NewRoundModule {}

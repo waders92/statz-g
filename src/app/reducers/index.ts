@@ -8,7 +8,6 @@ import { roundReducer } from './rounds.reducer';
 
 import * as fromData from './rounds.reducer';
 
-
 export interface AppState {
   rounds: fromData.RoundState;
 }
@@ -23,4 +22,9 @@ export const getRoundState = (state: AppState) => state.rounds;
 export const getAllRounds = createSelector(
   getRoundState,
   fromData.getRounds
+);
+
+export const getRoundById = (id: string) => createSelector(
+  getRoundState,
+  (rounds) => rounds.rounds.filter(x => x._id === id)
 );

@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IRound } from '../new-round/models/round';
-import { AppState, getRoundState, getAllRounds } from '../reducers';
+import { AppState, getRoundState, getAllRounds, getRoundById } from '../reducers';
 import { Store } from '@ngrx/store';
-import { RoundActionTypes } from '../actions/round.actions';
 import * as RoundActions from '../actions/round.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class RoundService {
+export class RoundDataService {
 
   private baseUrl = 'http://localhost:3000/';
 
@@ -20,19 +19,11 @@ export class RoundService {
     return this.http.get<IRound[]>(this.baseUrl + 'rounds');
   }
 
-  getRoundById(id: string) {
-    return this.http.get<IRound>(this.baseUrl + 'rounds' + '/' + id);
-  }
-
   addRound(round: IRound) {
     return this.http.post(this.baseUrl + 'rounds', round);
   }
 
-  deleteRound(id: string) {
-    return this.http.delete(this.baseUrl + 'rounds' + '/' + id);
-  }
-
-  updateRround(round: IRound) {
+  updateRound(round: IRound) {
     return this.http.put(this.baseUrl + 'rounds' + '/' + round._id, round);
   }
 
@@ -46,5 +37,9 @@ export class RoundService {
 
   getRounds() {
     return this.store.select(getAllRounds);
+  }
+
+  getRound(id: string) {
+    return this.store.select(getRoundById(id));
   }
 }

@@ -17,6 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './effects';
+import { NewRoundConverter } from './new-round/converters/new-round-converter';
 
 @NgModule({
   declarations: [AppComponent, RoundLineItemComponent],
@@ -38,7 +39,8 @@ import { effects } from './effects';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    NewRoundConverter
   ],
   bootstrap: [AppComponent]
 })

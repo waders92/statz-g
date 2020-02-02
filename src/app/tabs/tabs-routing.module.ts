@@ -38,6 +38,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'stats',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../stats/stats.module').then(m => m.StatsModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'

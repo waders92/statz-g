@@ -36,6 +36,9 @@ export function roundReducer(state = initialState, action: RoundActions ): Round
       updatedState[updatedState.findIndex(el => el._id === action.round._id)] = action.round;
       return { ...state, rounds: [...updatedState ] };
    }
+   case RoundActionTypes.GetRound: {
+     return { ...state, rounds: { ...state.rounds.filter(x => x._id === action.round._id) } };
+   }
 
     default:
       return state;

@@ -18,17 +18,6 @@ export class RoundLogicService {
     private roundConverter: NewRoundConverter,
     private roundDataService: RoundDataService) { }
 
-  public adjustViewableRound(editedRound: any, round: any): void {
-    editedRound.course = round.course;
-    editedRound.score = round.score;
-    editedRound.fairwaysInReg = round.fairwaysInReg;
-    editedRound.greensInReg = round.greensInReg;
-    editedRound.totalPutts = round.totalPutts;
-    editedRound.totalBirdies = round.totalBirdies;
-    editedRound.totalPars = round.totalPars;
-    editedRound.date = new Date(round.date);
-  }
-
   public updateStoreForAdd(round: any) {
     this.store.dispatch(new AddRound(round));
   }
@@ -72,5 +61,15 @@ export class RoundLogicService {
     }
 
     return true;
+  }
+
+  public adjustViewableRound(editedRound: any, round: any): void {
+    editedRound.course = round.course;
+    editedRound.score = round.score;
+    editedRound.fairwaysInReg = round.fairwaysInReg;
+    editedRound.greensInReg = round.greensInReg;
+    editedRound.totalPutts = round.totalPutts;
+    editedRound.totalBirdies = round.totalBirdies;
+    editedRound.totalPars = round.totalPars;
   }
 }

@@ -22,6 +22,7 @@ export class RoundLineItemComponent implements OnInit {
   ngOnInit() {
     if (this.roundData) {
       this.isEdit = true;
+      this.date = this.roundData.date;
       this.constructStatsDict();
     }
   }
@@ -50,6 +51,7 @@ export class RoundLineItemComponent implements OnInit {
 
   private constructStatsDict(): void {
     const round = this.roundData;
+    this.statsDict[RoundStatCategories.Date] = round.date;
     this.statsDict[RoundStatCategories.Id] = round._id;
     this.statsDict[RoundStatCategories.Course] = round.course;
     this.statsDict[RoundStatCategories.Score] = round.score;

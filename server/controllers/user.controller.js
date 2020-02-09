@@ -56,7 +56,7 @@ exports.login = ((req, res, next) => {
     }
 
     if (!passportUser) {
-      return res.send('No user found with that email');
+      return res.send('No user found with that email / password combination');
     }
 
     if (passportUser) {

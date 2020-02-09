@@ -16,7 +16,8 @@ require('./config/passport');
 mongoose.Promise = global.Promise;
 
 mongoose.connect(config.url, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
@@ -27,3 +28,5 @@ mongoose.connect(config.url, {
 app.listen(config.serverport, () => {
   console.log("Server is listening on port 3000");
 });
+
+mongoose.set('useCreateIndex', true);

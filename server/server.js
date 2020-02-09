@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 const config = require('./config.js');
 const mongoose = require('mongoose');
 require('./routes/round.routes')(app);
+require('./routes/user.routes')(app);
+require('./config/passport');
 
 mongoose.Promise = global.Promise;
 
@@ -20,10 +22,6 @@ mongoose.connect(config.url, {
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
-});
-
-app.get('/', (req, res) => {
-  res.json({"message": "Welcome to Statz-G"});
 });
 
 app.listen(config.serverport, () => {

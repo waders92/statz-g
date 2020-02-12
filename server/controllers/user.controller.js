@@ -1,5 +1,6 @@
 const Users = require('../models/user.model');
 const passport = require('passport');
+const auth = require('../routes/auth');
 
 exports.create = ((req, res) => {
   const { body: { user } } = req;

@@ -11,10 +11,10 @@
     Pars: {{ round.totalPars}}<br>
     Putts: {{ round.totalPutts }}
   </p>
-  <div class="navigate-back">
-    <ion-button expand="full" color="medium" [routerLink]="['../../tabs/history']">Back To History</ion-button>
-  </div>
   <div class="edit-round-button">
     <ion-button expand="full" color="medium" (click)="presentEditRoundForm(round)">Edit Round</ion-button>
+  </div>
+  <div class="navigate-back">
+    <ion-button expand="full" color="medium" [routerLink]="['../../tabs/history']">Back To History</ion-button>
   </div>
 </div>

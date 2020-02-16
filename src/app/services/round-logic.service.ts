@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { IRound } from '../new-round/models/round';
 import { Store } from '@ngrx/store';
 import { RoundState } from '../reducers/rounds.reducer';
 import { AddRound, UpdateRound } from '../actions/round.actions';
 import { NewRoundConverter, IStatsDict } from '../new-round/converters/new-round-converter';
-import { Observable } from 'rxjs';
 import { RoundDataService } from './round-data-service';
 import { RoundStatCategories } from '../new-round/models/round-type-enums';
 
@@ -12,6 +11,8 @@ import { RoundStatCategories } from '../new-round/models/round-type-enums';
   providedIn: 'root'
 })
 export class RoundLogicService {
+
+  userId: string;
 
   constructor(
     private store: Store<RoundState>,
@@ -38,8 +39,8 @@ export class RoundLogicService {
     return this.roundDataService.updateRound(editedRound);
   }
 
-  public load() {
-    this.roundDataService.load();
+  public load(id: string) {
+    this.roundDataService.load(id);
   }
 
   public getRounds() {

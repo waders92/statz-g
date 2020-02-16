@@ -7,11 +7,16 @@ export enum RoundActionTypes {
   LoadRoundsFailure = '[Round] Load Rounds Failure',
   AddRound = '[Round] Add Round',
   UpdateRound = '[Round] Update Round',
-  GetRound = '[Round] Get Round'
+  GetRound = '[Round] Get Round',
+  Logout = '[Round] logout'
 }
 
 export class LoadRoundsBegin implements Action {
   readonly type = RoundActionTypes.LoadRoundsBegin;
+
+  constructor(public id: string) {
+
+  }
 }
 
 export class LoadRoundsSuccess implements Action {
@@ -54,4 +59,8 @@ export class GetRound implements Action {
   }
 }
 
-export type RoundActions = AddRound | UpdateRound | GetRound | LoadRoundsBegin | LoadRoundsSuccess | LoadRoundsFailure;
+export class Logout implements Action {
+  readonly type = RoundActionTypes.Logout;
+}
+
+export type RoundActions = AddRound | UpdateRound | GetRound | LoadRoundsBegin | LoadRoundsSuccess | LoadRoundsFailure | Logout;

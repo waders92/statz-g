@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    findAllRounds(res);
+    findAllRounds(req, res);
 };
 
 exports.update = (req, res) => {
@@ -64,8 +64,9 @@ function saveRound(res, round) {
     });
 }
 
-function findAllRounds (res) {
-    Round.find()
+function findAllRounds (req, res) {
+    const id = req.params.userId;
+    Round.find({userId: id})
     .then(rounds => {
         res.send(rounds);
     }).catch(err => {

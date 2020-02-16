@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'round-details/:_id',
     loadChildren: () => import('./history/history-details/history-details.module').then(m => m.HistoryDetailsModule)
+  },
+  {
+    path: 'create-user',
+    loadChildren: () => import('./create-user/create-user.module').then(m => m.CreateUserModule)
   }
 ];
 @NgModule({

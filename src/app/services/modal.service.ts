@@ -10,13 +10,16 @@ import { RoundLogicService } from './round-logic.service';
 })
 export class ModalService {
 
+  userId: string;
+
   constructor(
     private modalController: ModalController,
     private logicService: RoundLogicService,
     private toastCtrl: ToastController
     ) { }
 
-  public async presentNewRoundForm(roundItemInputs: any) {
+
+  public async presentNewRoundForm(roundItemInputs: any, userId: string) {
     const modal = await this.modalController.create({
       component: RoundLineItemComponent,
       componentProps: {
@@ -28,6 +31,7 @@ export class ModalService {
     .then((data) => {
       if (data && data.data !== undefined) {
         const newRound = this.logicService.convertRoundFromJson(data);
+        newRound.userId = userId;
         this.logicService.addRound(newRound).subscribe((round) => {
           this.logicService.updateStoreForAdd(round);
           this.showToastForRound();
@@ -38,7 +42,7 @@ export class ModalService {
     return await modal.present();
   }
 
-  public async presentEditRoundForm(editedRound: any, round: IRound) {
+  public async presentEditRoundForm(round: IRound) {
     const modal = await this.modalController.create({
       component: RoundLineItemComponent,
       componentProps: {
@@ -50,7 +54,8 @@ export class ModalService {
     modal.onDidDismiss()
     .then((data) => {
       if (data && data.data !== undefined) {
-        editedRound = this.logicService.convertRoundFromJson(data);
+        const editedRound = this.logicService.convertRoundFromJson(data) as IRound;
+        editedRound.userId = round.userId;
         this.logicService.updateRound(editedRound).subscribe((rnd) => {
           this.logicService.adjustViewableRound(editedRound, rnd);
           this.logicService.updateStoreForEdit(editedRound);

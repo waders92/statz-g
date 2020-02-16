@@ -15,8 +15,8 @@ export class RoundDataService {
 
   constructor(private store: Store<AppState>, private http: HttpClient) { }
 
-  getAllRounds() {
-    return this.http.get<IRound[]>(this.baseUrl + 'rounds');
+  getAllRounds(action: RoundActions.LoadRoundsBegin) {
+    return this.http.get<IRound[]>(this.baseUrl + 'rounds' + '/' + action.id);
   }
 
   addRound(round: IRound) {
@@ -27,8 +27,8 @@ export class RoundDataService {
     return this.http.put(this.baseUrl + 'rounds' + '/' + round._id, round);
   }
 
-  load() {
-    this.store.dispatch(new RoundActions.LoadRoundsBegin());
+  load(id: string) {
+    this.store.dispatch(new RoundActions.LoadRoundsBegin(id));
   }
 
   getRoundState() {

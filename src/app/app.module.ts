@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './effects';
 import { NewRoundConverter } from './new-round/converters/new-round-converter';
+import { clearState } from './reducers/rounds.reducer';
 
 @NgModule({
   declarations: [AppComponent, RoundLineItemComponent],
@@ -30,7 +31,7 @@ import { NewRoundConverter } from './new-round/converters/new-round-converter';
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, {
-      metaReducers,
+      metaReducers: [clearState],
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,

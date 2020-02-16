@@ -6,25 +6,32 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="new-round">
+    <ion-tab-button tab="new-round" [ngClass]="{'disabled': !isCurrentUserLoggedIn}">
       <ion-icon name="add-circle-outline"></ion-icon>
       <ion-label>New Round</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="history">
+    <ion-tab-button tab="history" [ngClass]="{'disabled': !isCurrentUserLoggedIn}">
       <ion-icon name="list"></ion-icon>
       <ion-label>History</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="stats">
+    <ion-tab-button tab="stats" [ngClass]="{'disabled': !isCurrentUserLoggedIn}">
       <ion-icon name="stats"></ion-icon>
       <ion-label>Stats</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="user">
+    <ion-tab-button tab="user" *ngIf="!isCurrentUserLoggedIn; else logout">
       <ion-icon name="contact"></ion-icon>
       <ion-label>Login</ion-label>
     </ion-tab-button>
+
+    <ng-template #logout>
+      <ion-tab-button tab="user" (click)="logoutUser()">
+        <ion-icon name="contact"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-tab-button>
+    </ng-template>
   
   </ion-tab-bar>
 </ion-tabs>

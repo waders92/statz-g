@@ -24,7 +24,6 @@ export function roundReducer(state = initialState, action: RoundActions ): Round
     case RoundActionTypes.LoadRoundsSuccess: {
       return { ...state, loading: false, rounds: action.payload.data };
     }
-
     case RoundActionTypes.LoadRoundsFailure: {
       return { ...state, loading: false, error: action.payload.error };
     }
@@ -35,14 +34,25 @@ export function roundReducer(state = initialState, action: RoundActions ): Round
       const updatedState = [...state.rounds];
       updatedState[updatedState.findIndex(el => el._id === action.round._id)] = action.round;
       return { ...state, rounds: [...updatedState ] };
-   }
-   case RoundActionTypes.GetRound: {
-     return { ...state, rounds: { ...state.rounds.filter(x => x._id === action.round._id) } };
-   }
+    }
+    case RoundActionTypes.GetRound: {
+      return { ...state, rounds: { ...state.rounds.filter(x => x._id === action.round._id) } };
+    }
 
     default:
       return state;
   }
+}
+
+
+export function clearState(reducer) {
+  return (state: RoundState, action: RoundActions) => {
+    if (action.type === RoundActionTypes.Logout) {
+      state = undefined;
+    }
+
+    return reducer(state, action);
+  };
 }
 
 export const getRounds = (state: RoundState) => state.rounds;

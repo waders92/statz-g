@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IRound } from '../new-round/models/round';
 import { RoundLogicService } from '../services/round-logic.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../reducers';
 
 @Component({
   selector: 'app-history',
@@ -15,7 +17,6 @@ export class HistoryComponent implements OnInit {
   constructor(private logicService: RoundLogicService) {}
 
   ngOnInit() {
-    this.logicService.load();
     this.logicService.getRounds().subscribe((data) => {
       this.rounds = data;
     });

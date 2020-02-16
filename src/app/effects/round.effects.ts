@@ -13,8 +13,8 @@ export class RoundEffects {
   @Effect()
   loadRounds = this.actions.pipe(
     ofType(RoundActions.RoundActionTypes.LoadRoundsBegin),
-    switchMap(() => {
-      return this.roundService.getAllRounds().pipe(
+    switchMap((userId) => {
+      return this.roundService.getAllRounds(userId).pipe(
         map(rounds => new RoundActions.LoadRoundsSuccess({ data: rounds })),
         catchError(error =>
           of(new RoundActions.LoadRoundsFailure({ error }))

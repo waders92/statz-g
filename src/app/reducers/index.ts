@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { roundReducer } from './rounds.reducer';
 
 import * as fromData from './rounds.reducer';
+import { RoundActionTypes } from '../actions/round.actions';
 
 export interface AppState {
   rounds: fromData.RoundState;

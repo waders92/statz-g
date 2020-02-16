@@ -12,7 +12,6 @@ import { ModalService } from 'src/app/services/modal.service';
 export class HistoryDetailsComponent implements OnInit {
 
   public round: IRound;
-  public editedRound = {} as IRound;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +31,6 @@ export class HistoryDetailsComponent implements OnInit {
   }
 
   public presentEditRoundForm(round: IRound) {
-    this.modalService.presentEditRoundForm(this.editedRound, round);
+    this.modalService.presentEditRoundForm(round);
   }
 }

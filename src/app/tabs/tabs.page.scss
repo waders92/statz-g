@@ -1,1 +1,5 @@
-
+.disabled {
+  cursor: default;
+  opacity: .4;
+  pointer-events: none;
+}

@@ -1,6 +1,5 @@
 const Users = require('../models/user.model');
 const passport = require('passport');
-const auth = require('../routes/auth');
 
 exports.create = ((req, res) => {
   const { body: { user } } = req;
@@ -53,11 +52,11 @@ exports.login = ((req, res, next) => {
 
   return passport.authenticate('local', { session: false }, (err, passportUser) => {
     if (err) {
-      return res.send(err);
+      return res.json(err);
     }
 
     if (!passportUser) {
-      return res.send('No user found with that email / password combination');
+      return res.json('No user found with that email / password combination');
     }
 
     if (passportUser) {

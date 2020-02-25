@@ -7,7 +7,34 @@
 </ion-header>
 
 <ion-content>
-  <div class="landing-page-content">
-
-  </div>
+    <ion-row>
+      <!-- Score -->
+      <ion-col size="6">
+          <circle-progress [percent]="statsPackage.scoringAverage" [subtitle]="statPackageEnum.score" [showUnits]="false"></circle-progress>
+      </ion-col>
+      <!-- Greens Hit -->
+      <ion-col size="6">
+        <circle-progress [percent]="statsPackage.greensInRegAverage" [subtitle]="statPackageEnum.greens"></circle-progress>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <!-- Fairways -->
+      <ion-col size="6">
+          <circle-progress [percent]="statsPackage.fairwaysInRegAverage" [subtitle]="statPackageEnum.fwys"></circle-progress>
+      </ion-col>
+      <!-- Total Putts -->
+      <ion-col size="6">
+        <circle-progress [percent]="statsPackage.puttsPerRoundAverage" [subtitle]="statPackageEnum.putts" [showUnits]="false"></circle-progress>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <!-- Total Birdies-->
+      <ion-col size="6">
+        <circle-progress [percent]="statsPackage.birdieAverage" [subtitle]="statPackageEnum.birds" [showUnits]="false"></circle-progress>
+      </ion-col>
+      <!-- Total Pars -->
+      <ion-col size="6">
+        <circle-progress [percent]="statsPackage.parsPerRoundAverage" [subtitle]="statPackageEnum.pars" [showUnits]="false"></circle-progress>
+      </ion-col>
+    </ion-row>
 </ion-content>

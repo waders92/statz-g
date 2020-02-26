@@ -3,6 +3,7 @@ import { IRound } from '../new-round/models/round';
 import { IStatDisplayPackage } from '../stats/models/stat-display-package';
 import { ISpecificStatPackage } from '../stats/models/specific-stat-package';
 import { RoundKeyValues } from '../new-round/models/round-type-enums';
+import { StatDisplayPackageTitleEnum } from '../stats/models/stat-display-package-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -50,17 +51,17 @@ export class StatsLogicService {
   public populateDetailsTitle(tempTitle: string): string {
     switch (tempTitle) {
       case RoundKeyValues.Score:
-        return 'Scoring Details';
+        return StatDisplayPackageTitleEnum.Scoring;
       case RoundKeyValues.Greens:
-        return 'Greens In Reg Details';
+        return StatDisplayPackageTitleEnum.Greens;
       case RoundKeyValues.Fwys:
-        return 'Fairways In Reg Details';
+        return StatDisplayPackageTitleEnum.Fwys;
       case RoundKeyValues.Putts:
-        return 'Putting Details';
+        return StatDisplayPackageTitleEnum.Putting;
       case RoundKeyValues.Birdies:
-        return 'Birdie Details';
+        return StatDisplayPackageTitleEnum.Birdies;
       case RoundKeyValues.Pars:
-        return 'Par Details';
+        return StatDisplayPackageTitleEnum.Pars;
     }
   }
 

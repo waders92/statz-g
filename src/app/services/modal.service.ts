@@ -77,19 +77,6 @@ export class ModalService {
       }
     });
 
-    // modal.onDidDismiss()
-    // .then((data) => {
-    //   if (data && data.data !== undefined) {
-    //     const editedRound = this.logicService.convertRoundFromJson(data) as IRound;
-    //     editedRound.userId = round.userId;
-    //     this.logicService.updateRound(editedRound).subscribe((rnd) => {
-    //       this.logicService.adjustViewableRound(editedRound, rnd);
-    //       this.logicService.updateStoreForEdit(editedRound);
-    //       this.showToastForRound(true);
-    //     });
-    //   }
-    // });
-
     return await modal.present();
   }
 

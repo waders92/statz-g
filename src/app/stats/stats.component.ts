@@ -27,9 +27,9 @@ export class StatsComponent implements OnInit {
     });
   }
 
-  showStats(statType: string) {
+  showSpecificStats(statType: string) {
     const specificStatPackage = this.statsService.getSpecificStatPackage(statType, this.rounds);
-    console.log(specificStatPackage);
+    this.modalService.presentStatDetails(specificStatPackage);
     // pass package to modalservice to display
     // create a component to give to modal service as reference
   }

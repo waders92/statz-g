@@ -19,10 +19,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { effects } from './effects';
 import { NewRoundConverter } from './new-round/converters/new-round-converter';
 import { clearState } from './reducers/rounds.reducer';
+import { StatDetailsComponent } from './stat-details/stat-details.component';
 
 @NgModule({
-  declarations: [AppComponent, RoundLineItemComponent],
-  entryComponents: [RoundLineItemComponent],
+  declarations: [AppComponent, RoundLineItemComponent, StatDetailsComponent],
+  entryComponents: [RoundLineItemComponent, StatDetailsComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

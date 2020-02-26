@@ -4,6 +4,8 @@ import { RoundLineItemComponent } from '../round-line-item/round-line-item.compo
 import { IRound } from '../new-round/models/round';
 import { roundPropertiesAndInputValues } from '../new-round/models/round-type-values';
 import { RoundLogicService } from './round-logic.service';
+import { ISpecificStatPackage } from '../stats/models/specific-stat-package';
+import { StatDetailsComponent } from '../stat-details/stat-details.component';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +65,30 @@ export class ModalService {
         });
       }
     });
+
+    return await modal.present();
+  }
+
+  public async presentStatDetails(statPackage: ISpecificStatPackage[]) {
+    const modal = await this.modalController.create({
+      component: StatDetailsComponent,
+      componentProps: {
+        statDetails: statPackage
+      }
+    });
+
+    // modal.onDidDismiss()
+    // .then((data) => {
+    //   if (data && data.data !== undefined) {
+    //     const editedRound = this.logicService.convertRoundFromJson(data) as IRound;
+    //     editedRound.userId = round.userId;
+    //     this.logicService.updateRound(editedRound).subscribe((rnd) => {
+    //       this.logicService.adjustViewableRound(editedRound, rnd);
+    //       this.logicService.updateStoreForEdit(editedRound);
+    //       this.showToastForRound(true);
+    //     });
+    //   }
+    // });
 
     return await modal.present();
   }

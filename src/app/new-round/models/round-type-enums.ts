@@ -14,3 +14,12 @@ export enum RoundStatValues {
   String = 'text',
   Number = 'number'
 }
+
+export enum RoundKeyValues {
+  Score = 'score',
+  Greens = 'greensInReg',
+  Fwys = 'fairwaysInReg',
+  Putts = 'totalPutts',
+  Birdies = 'totalBirdies',
+  Pars = 'totalPars'
+}

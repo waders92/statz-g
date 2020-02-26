@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IRound } from '../new-round/models/round';
 import { IStatDisplayPackage } from '../stats/models/stat-display-package';
 import { ISpecificStatPackage } from '../stats/models/specific-stat-package';
+import { RoundKeyValues } from '../new-round/models/round-type-enums';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,9 @@ export class StatsLogicService {
     const scorePerRoundAverage = this.calculateScoringAverage(rounds);
     const greensHitPerRoundAverage = this.calculateGreensHitAverage(rounds);
     const fairwaysHitPerRoundAverage = this.calculateFairwaysHitAverage(rounds);
-    const puttsPerRndAverage = this.calculateTotalPutts(rounds);
-    const birdiePerRndAverage = this.calculatBirdieAverage(rounds);
-    const parsPerRndAverage = this.calculateParsPerRoundAverage(rounds);
+    const puttsPerRndAverage = this.calculateStatAverage(rounds, RoundKeyValues.Putts);
+    const birdiePerRndAverage = this.calculateStatAverage(rounds, RoundKeyValues.Birdies);
+    const parsPerRndAverage = this.calculateStatAverage(rounds, RoundKeyValues.Pars);
 
     return {
       scoringAverage: scorePerRoundAverage,
@@ -32,17 +33,17 @@ export class StatsLogicService {
   public getSpecificStatPackage(statType: string, rounds: IRound[]): ISpecificStatPackage[] {
     switch (statType) {
       case 'score':
-        return this.getStatDetails(rounds, 'score');
+        return this.getStatDetails(rounds, RoundKeyValues.Score);
       case 'greens':
-        return this.getStatDetails(rounds, 'greensInReg');
+        return this.getStatDetails(rounds, RoundKeyValues.Greens);
       case 'fairways':
-        return this.getStatDetails(rounds, 'fairwaysInReg');
+        return this.getStatDetails(rounds, RoundKeyValues.Fwys);
       case 'putts':
-        return this.getStatDetails(rounds, 'totalPutts');
+        return this.getStatDetails(rounds, RoundKeyValues.Putts);
       case 'birdies':
-        return this.getStatDetails(rounds, 'totalBirdies');
+        return this.getStatDetails(rounds, RoundKeyValues.Birdies);
       case 'pars':
-        return this.getStatDetails(rounds, 'totalPars');
+        return this.getStatDetails(rounds, RoundKeyValues.Pars);
     }
   }
 
@@ -66,17 +67,9 @@ export class StatsLogicService {
     return this.convertAverageToPercent(fwyAverage);
   }
 
-  private calculateTotalPutts(rounds: IRound[]): number {
-   return rounds.reduce((a, b) => a + b.totalPutts, 0) / rounds.length;
-  }
-
-  private calculateParsPerRoundAverage(rounds: IRound[]): number {
-    return rounds.reduce((a, b) => a + b.totalPars, 0) / rounds.length;
-  }
-
-  private calculatBirdieAverage(rounds: IRound[]): number {
-    return rounds.reduce((a, b) => a + b.totalBirdies, 0) / rounds.length;
-  }
+  private calculateStatAverage(rounds: IRound[], type: string): number {
+    return rounds.reduce((a, b) => a + b[type], 0) / rounds.length;
+   }
 
   private convertAverageToPercent(avg: number): number {
     return avg * 100;
@@ -90,7 +83,8 @@ export class StatsLogicService {
         {
           date: round.date,
           course: round.course,
-          stat: round[type]
+          stat: round[type],
+          statType: type
         }
       );
     });

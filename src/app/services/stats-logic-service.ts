@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IRound } from '../new-round/models/round';
 import { IStatDisplayPackage } from '../stats/models/stat-display-package';
+import { ISpecificStatPackage } from '../stats/models/specific-stat-package';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,23 @@ export class StatsLogicService {
       birdieAverage: birdiePerRndAverage,
       parsPerRoundAverage: parsPerRndAverage
     };
+  }
+
+  public getSpecificStatPackage(statType: string, rounds: IRound[]): ISpecificStatPackage[] {
+    switch (statType) {
+      case 'score':
+        return this.getStatDetails(rounds, 'score');
+      case 'greens':
+        return this.getStatDetails(rounds, 'greensInReg');
+      case 'fairways':
+        return this.getStatDetails(rounds, 'fairwaysInReg');
+      case 'putts':
+        return this.getStatDetails(rounds, 'totalPutts');
+      case 'birdies':
+        return this.getStatDetails(rounds, 'totalBirdies');
+      case 'pars':
+        return this.getStatDetails(rounds, 'totalPars');
+    }
   }
 
   private calculateScoringAverage(rounds: IRound[]): number {
@@ -62,5 +80,21 @@ export class StatsLogicService {
 
   private convertAverageToPercent(avg: number): number {
     return avg * 100;
+  }
+
+  private getStatDetails(rounds: IRound[], type: string): ISpecificStatPackage[] {
+    const result: ISpecificStatPackage[] = [];
+
+    rounds.forEach((round) => {
+      result.push(
+        {
+          date: round.date,
+          course: round.course,
+          stat: round[type]
+        }
+      );
+    });
+
+    return result;
   }
 }

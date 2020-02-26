@@ -47,6 +47,23 @@ export class StatsLogicService {
     }
   }
 
+  public populateDetailsTitle(tempTitle: string): string {
+    switch (tempTitle) {
+      case RoundKeyValues.Score:
+        return 'Scoring Details';
+      case RoundKeyValues.Greens:
+        return 'Greens In Reg Details';
+      case RoundKeyValues.Fwys:
+        return 'Fairways In Reg Details';
+      case RoundKeyValues.Putts:
+        return 'Putting Details';
+      case RoundKeyValues.Birdies:
+        return 'Birdie Details';
+      case RoundKeyValues.Pars:
+        return 'Par Details';
+    }
+  }
+
   private calculateScoringAverage(rounds: IRound[]): number {
     return rounds.reduce((a, b) => a + b.score, 0) / rounds.length;
   }

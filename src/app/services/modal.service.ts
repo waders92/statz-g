@@ -6,6 +6,7 @@ import { roundPropertiesAndInputValues } from '../new-round/models/round-type-va
 import { RoundLogicService } from './round-logic.service';
 import { ISpecificStatPackage } from '../stats/models/specific-stat-package';
 import { StatDetailsComponent } from '../stat-details/stat-details.component';
+import { IStatPackageAverages } from '../stats/models/stat-package-averages';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +70,7 @@ export class ModalService {
     return await modal.present();
   }
 
-  public async presentStatDetails(statPackage: ISpecificStatPackage[]) {
+  public async presentStatDetails(statPackage: IStatPackageAverages) {
     const modal = await this.modalController.create({
       component: StatDetailsComponent,
       componentProps: {

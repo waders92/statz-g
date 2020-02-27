@@ -29,6 +29,7 @@ export class StatsComponent implements OnInit {
 
   showSpecificStats(statType: string) {
     const specificStatPackage = this.statsService.getSpecificStatPackage(statType, this.rounds);
-    this.modalService.presentStatDetails(specificStatPackage);
+    const appendedSpecificStatPackage = this.statsService.appendAverageToCategory(this.statsPackage, specificStatPackage);
+    this.modalService.presentStatDetails(appendedSpecificStatPackage);
   }
 }

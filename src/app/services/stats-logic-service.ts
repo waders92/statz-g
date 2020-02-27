@@ -4,6 +4,7 @@ import { IStatDisplayPackage } from '../stats/models/stat-display-package';
 import { ISpecificStatPackage } from '../stats/models/specific-stat-package';
 import { RoundKeyValues } from '../new-round/models/round-type-enums';
 import { StatDisplayPackageTitleEnum } from '../stats/models/stat-display-package-enum';
+import { IStatPackageAverages } from '../stats/models/stat-package-averages';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,12 @@ export class StatsLogicService {
     const parsPerRndAverage = this.calculateStatAverage(rounds, RoundKeyValues.Pars);
 
     return {
-      scoringAverage: scorePerRoundAverage,
-      greensInRegAverage: greensHitPerRoundAverage,
-      fairwaysInRegAverage: fairwaysHitPerRoundAverage,
-      puttsPerRoundAverage: puttsPerRndAverage,
-      birdieAverage: birdiePerRndAverage,
-      parsPerRoundAverage: parsPerRndAverage
+      score: scorePerRoundAverage,
+      greensInReg: greensHitPerRoundAverage,
+      fairwaysInReg: fairwaysHitPerRoundAverage,
+      totalPutts: puttsPerRndAverage,
+      totalBirdies: birdiePerRndAverage,
+      totalPars: parsPerRndAverage
     };
   }
 
@@ -63,6 +64,16 @@ export class StatsLogicService {
       case RoundKeyValues.Pars:
         return StatDisplayPackageTitleEnum.Pars;
     }
+  }
+
+  public appendAverageToCategory(statsPackage: IStatDisplayPackage, specificStatPackages: ISpecificStatPackage[]): IStatPackageAverages {
+   const statType = specificStatPackages[0].statType;
+   const statAverage = statsPackage[statType];
+
+   return {
+     statAverage,
+     detailsPackage: specificStatPackages
+   };
   }
 
   private calculateScoringAverage(rounds: IRound[]): number {

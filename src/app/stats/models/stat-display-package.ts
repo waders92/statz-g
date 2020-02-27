@@ -1,8 +1,8 @@
 export interface IStatDisplayPackage {
-  scoringAverage: number;
-  greensInRegAverage: number;
-  fairwaysInRegAverage: number;
-  puttsPerRoundAverage: number;
-  birdieAverage: number;
-  parsPerRoundAverage: number;
+  score: number;
+  greensInReg: number;
+  fairwaysInReg: number;
+  totalPutts: number;
+  totalBirdies: number;
+  totalPars: number;
 }

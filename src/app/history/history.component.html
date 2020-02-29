@@ -13,7 +13,7 @@
         <p class="round-details">
           <span class="details">{{ round.date |  date: 'M/dd/yyyy' }}</span>
           <span class="details">{{ round.course }}</span>
-          <span class="score-span">{{ round.score }}</span>
+          <span class="score-span"><span *ngIf="round.nineHoleRound">(9)&nbsp;</span>{{ round.score }}</span>
         </p>
         <div class="edit-round-button">
           <ion-button expand="full" color="medium" [routerLink]="['/round-details', round._id]">View Round</ion-button>

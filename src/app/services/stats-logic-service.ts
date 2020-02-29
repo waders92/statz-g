@@ -14,10 +14,10 @@ export class StatsLogicService {
 
   constructor() {}
 
-  public setupStatCategoriesForDisplay(rounds: IRound[]): IStatDisplayPackage {
+  public setupStatCategoriesForDisplay(rounds: IRound[], isNineHoleRound = false): IStatDisplayPackage {
     const scorePerRoundAverage = this.calculateScoringAverage(rounds);
-    const greensHitPerRoundAverage = this.calculateGreensHitAverage(rounds);
-    const fairwaysHitPerRoundAverage = this.calculateFairwaysHitAverage(rounds);
+    const greensHitPerRoundAverage = this.calculateGreensHitAverage(rounds, isNineHoleRound);
+    const fairwaysHitPerRoundAverage = this.calculateFairwaysHitAverage(rounds, isNineHoleRound);
     const puttsPerRndAverage = this.calculateStatAverage(rounds, RoundKeyValues.Putts);
     const birdiePerRndAverage = this.calculateStatAverage(rounds, RoundKeyValues.Birdies);
     const parsPerRndAverage = this.calculateStatAverage(rounds, RoundKeyValues.Pars);
@@ -80,18 +80,22 @@ export class StatsLogicService {
     return rounds.reduce((a, b) => a + b.score, 0) / rounds.length;
   }
 
-  private calculateGreensHitAverage(rounds: IRound[]): number {
+  private calculateGreensHitAverage(rounds: IRound[], isNineHoleRound: boolean = false): number {
+    let greensTotalForRound: number;
     const allGreensHit = rounds.reduce((a, b) => a + b.greensInReg, 0);
     const totalRounds = rounds.length;
-    const totalPossibleGreens = totalRounds * 18;
+    isNineHoleRound ? greensTotalForRound = 9 : greensTotalForRound = 18;
+    const totalPossibleGreens = totalRounds * greensTotalForRound;
     const greensAverage = allGreensHit / totalPossibleGreens;
     return this.convertAverageToPercent(greensAverage);
   }
 
-  private calculateFairwaysHitAverage(rounds: IRound[]): number {
+  private calculateFairwaysHitAverage(rounds: IRound[], isNineHoleRound: boolean = false): number {
+    let fwysTotalForRound: number;
     const allFairwaysHit = rounds.reduce((a, b) => a + b.fairwaysInReg, 0);
     const totalRounds = rounds.length;
-    const totalPossibleFairways = totalRounds * 14; // figure out how to deal with this
+    isNineHoleRound ? fwysTotalForRound = 7 : fwysTotalForRound = 14;
+    const totalPossibleFairways = totalRounds * fwysTotalForRound; // figure out how to deal with this
     const fwyAverage = allFairwaysHit / totalPossibleFairways;
     return this.convertAverageToPercent(fwyAverage);
   }

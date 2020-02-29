@@ -15,21 +15,29 @@ import { ISpecificStatPackage } from './models/specific-stat-package';
 export class StatsComponent implements OnInit {
 
   public statPackageEnum = StatDisplayPackageEnum;
-  public rounds: IRound[];
-  public statsPackage: IStatDisplayPackage;
+  public statsPackage18: IStatDisplayPackage;
+  public statsPackage9: IStatDisplayPackage;
+  public eighteenHoleRnds: IRound[];
+  public nineHoleRnds: IRound[];
 
   constructor(private logicService: RoundLogicService, private statsService: StatsLogicService, private modalService: ModalService) { }
 
   ngOnInit() {
     this.logicService.getRounds().subscribe((data) => {
-      this.rounds = data;
-      this.statsPackage = this.statsService.setupStatCategoriesForDisplay(this.rounds);
+      this.eighteenHoleRnds = data.filter(x => !x.nineHoleRound);
+      this.nineHoleRnds = data.filter(x => x.nineHoleRound);
+      this.statsPackage18 = this.statsService.setupStatCategoriesForDisplay(this.eighteenHoleRnds);
+      this.statsPackage9 = this.statsService.setupStatCategoriesForDisplay(this.nineHoleRnds, true);
     });
   }
 
-  showSpecificStats(statType: string) {
-    const specificStatPackage = this.statsService.getSpecificStatPackage(statType, this.rounds);
-    const appendedSpecificStatPackage = this.statsService.appendAverageToCategory(this.statsPackage, specificStatPackage);
+  showSpecificStats(statType: string, isNineHoleRnd: boolean = false) {
+    let roundsToAppend: IRound[];
+    let correctStatPackage: IStatDisplayPackage;
+    isNineHoleRnd ? correctStatPackage = this.statsPackage9 : correctStatPackage = this.statsPackage18;
+    isNineHoleRnd ? roundsToAppend = this.nineHoleRnds : roundsToAppend = this.eighteenHoleRnds;
+    const specificStatPackage = this.statsService.getSpecificStatPackage(statType, roundsToAppend);
+    const appendedSpecificStatPackage = this.statsService.appendAverageToCategory(correctStatPackage, specificStatPackage);
     this.modalService.presentStatDetails(appendedSpecificStatPackage);
   }
 }

@@ -7,7 +7,8 @@ export enum RoundStatCategories {
   GreeensInReg = 'Greens In Regulation',
   TotalPutts = 'Total Putts',
   TotalBirdies = 'Total Birdies',
-  TotalPars = 'Total Pars'
+  TotalPars = 'Total Pars',
+  NineHoleRound = 'Nine Hole Round'
 }
 
 export enum RoundStatValues {

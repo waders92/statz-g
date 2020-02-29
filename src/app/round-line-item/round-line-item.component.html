@@ -8,6 +8,12 @@
       <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
     </ion-item>
   </div>
+  <div class="nine-hole-round">
+    <ion-item>
+      <ion-label>9 Hole Round?</ion-label>
+      <ion-checkbox color="primary" [(ngModel)]="nineHoleRound"></ion-checkbox>
+    </ion-item>
+  </div>
   <div *ngFor="let item of roundItems.data; let index = index; trackBy: trackByFn">
     <ion-item>
       <ion-label position="floating">{{ item }}</ion-label>

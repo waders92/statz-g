@@ -3,7 +3,7 @@ import { IRound } from '../new-round/models/round';
 import { Store } from '@ngrx/store';
 import { RoundState } from '../reducers/rounds.reducer';
 import { AddRound, UpdateRound } from '../actions/round.actions';
-import { NewRoundConverter, IStatsDict } from '../new-round/converters/new-round-converter';
+import { NewRoundConverter } from '../new-round/converters/new-round-converter';
 import { RoundDataService } from './round-data-service';
 import { RoundStatCategories } from '../new-round/models/round-type-enums';
 
@@ -72,5 +72,6 @@ export class RoundLogicService {
     editedRound.totalPutts = round.totalPutts;
     editedRound.totalBirdies = round.totalBirdies;
     editedRound.totalPars = round.totalPars;
+    editedRound.nineHoleRound = round.nineHoleRound;
   }
 }

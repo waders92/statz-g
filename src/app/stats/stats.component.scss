@@ -1,0 +1,16 @@
+.banner {
+  margin: 20px;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.stats-nine {
+  @extend .banner;
+  background-color: blue;
+}
+
+.stats-eighteen {
+  @extend .banner;
+  background-color: green;
+}

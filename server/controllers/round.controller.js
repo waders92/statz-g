@@ -33,7 +33,8 @@ function buildRound(req) {
      totalPutts: req.body.totalPutts,
      totalBirdies: req.body.totalBirdies,
      totalPars: req.body.totalPars,
-     date: req.body.date
+     date: req.body.date,
+     nineHoleRound: req.body.nineHoleRound
     });
 }
 
@@ -85,7 +86,8 @@ function findRoundByIdAndUpdate(req, res) {
         totalPutts: req.body.totalPutts,
         totalBirdies: req.body.totalBirdies,
         totalPars: req.body.totalPars,
-        date: req.body.date
+        date: req.body.date,
+        nineHoleRound: req.body.nineHoleRound
     }, {new: true})
     .then(round => {
         if(!round) {

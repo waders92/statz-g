@@ -35,7 +35,8 @@ export class NewRoundConverter {
       totalPutts: roundData.total_putts,
       totalBirdies: roundData.total_birdies,
       totalPars: roundData.total_pars,
-      date: roundData.date
+      date: roundData.date,
+      nineHoleRound: roundData.nine_hole_round
     };
   }
 }
@@ -51,4 +52,5 @@ export interface IStatsDict {
   total_birdies: number;
   total_pars: number;
   date: Date;
+  nine_hole_round: boolean;
 }

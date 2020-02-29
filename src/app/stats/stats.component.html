@@ -7,33 +7,73 @@
 </ion-header>
 
 <ion-content>
+  <div>
+    <p class="stats-eighteen">
+      18 Hole Rounds
+    </p>
+  </div>
   <!-- Score / Greens Hit -->
     <ion-row>
       <ion-col size="6">
-        <circle-progress [percent]="statsPackage.score" [subtitle]="statPackageEnum.score" [showUnits]="false" (click)="showSpecificStats('score')"></circle-progress>
+        <circle-progress [percent]="statsPackage18.score" [subtitle]="statPackageEnum.score" [showUnits]="false" (click)="showSpecificStats('score')"></circle-progress>
       </ion-col>
       <ion-col size="6">
-        <circle-progress [percent]="statsPackage.greensInReg" [subtitle]="statPackageEnum.greens" (click)="showSpecificStats('greens')"></circle-progress>
+        <circle-progress [percent]="statsPackage18.greensInReg" [subtitle]="statPackageEnum.greens" (click)="showSpecificStats('greens')"></circle-progress>
       </ion-col>
     </ion-row>
 
      <!-- Fairways / Total Putts -->
     <ion-row>
       <ion-col size="6">
-          <circle-progress [percent]="statsPackage.fairwaysInReg" [subtitle]="statPackageEnum.fwys" (click)="showSpecificStats('fairways')"></circle-progress>
+          <circle-progress [percent]="statsPackage18.fairwaysInReg" [subtitle]="statPackageEnum.fwys" (click)="showSpecificStats('fairways')"></circle-progress>
       </ion-col>
       <ion-col size="6">
-        <circle-progress [percent]="statsPackage.totalPutts" [subtitle]="statPackageEnum.putts" [showUnits]="false" (click)="showSpecificStats('putts')"></circle-progress>
+        <circle-progress [percent]="statsPackage18.totalPutts" [subtitle]="statPackageEnum.putts" [showUnits]="false" (click)="showSpecificStats('putts')"></circle-progress>
       </ion-col>
     </ion-row>
 
      <!-- Birdies / Pars -->
     <ion-row>
       <ion-col size="6">
-        <circle-progress [percent]="statsPackage.totalBirdies" [subtitle]="statPackageEnum.birds" [showUnits]="false" (click)="showSpecificStats('birdies')"></circle-progress>
+        <circle-progress [percent]="statsPackage18.totalBirdies" [subtitle]="statPackageEnum.birds" [showUnits]="false" (click)="showSpecificStats('birdies')"></circle-progress>
       </ion-col>
       <ion-col size="6">
-        <circle-progress [percent]="statsPackage.totalPars" [subtitle]="statPackageEnum.pars" [showUnits]="false" (click)="showSpecificStats('pars')"></circle-progress>
+        <circle-progress [percent]="statsPackage18.totalPars" [subtitle]="statPackageEnum.pars" [showUnits]="false" (click)="showSpecificStats('pars')"></circle-progress>
       </ion-col>
     </ion-row>
+
+    <div>
+      <p class="stats-nine">
+       9 Hole Rounds
+      </p>
+    </div>
+    <!-- Score / Greens Hit -->
+      <ion-row>
+        <ion-col size="6">
+          <circle-progress [percent]="statsPackage9.score" [subtitle]="statPackageEnum.score" [showUnits]="false" (click)="showSpecificStats('score', true)"></circle-progress>
+        </ion-col>
+        <ion-col size="6">
+          <circle-progress [percent]="statsPackage9.greensInReg" [subtitle]="statPackageEnum.greens" (click)="showSpecificStats('greens', true)"></circle-progress>
+        </ion-col>
+      </ion-row>
+  
+       <!-- Fairways / Total Putts -->
+      <ion-row>
+        <ion-col size="6">
+            <circle-progress [percent]="statsPackage9.fairwaysInReg" [subtitle]="statPackageEnum.fwys" (click)="showSpecificStats('fairways', true)"></circle-progress>
+        </ion-col>
+        <ion-col size="6">
+          <circle-progress [percent]="statsPackage9.totalPutts" [subtitle]="statPackageEnum.putts" [showUnits]="false" (click)="showSpecificStats('putts', true)"></circle-progress>
+        </ion-col>
+      </ion-row>
+  
+       <!-- Birdies / Pars -->
+      <ion-row>
+        <ion-col size="6">
+          <circle-progress [percent]="statsPackage9.totalBirdies" [subtitle]="statPackageEnum.birds" [showUnits]="false" (click)="showSpecificStats('birdies', true)"></circle-progress>
+        </ion-col>
+        <ion-col size="6">
+          <circle-progress [percent]="statsPackage9.totalPars" [subtitle]="statPackageEnum.pars" [showUnits]="false" (click)="showSpecificStats('pars', true)"></circle-progress>
+        </ion-col>
+      </ion-row>
 </ion-content>

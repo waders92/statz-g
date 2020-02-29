@@ -9,7 +9,8 @@ var roundSchema = new mongoose.Schema ({
   totalPutts: Number,
   totalBirdies: Number,
   totalPars: Number,
-  date: Date
+  date: Date,
+  nineHoleRound: Boolean
 }, {
   timestamps: true
 });

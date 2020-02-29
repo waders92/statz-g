@@ -9,4 +9,5 @@ export interface IRound {
   totalBirdies: number;
   totalPars: number;
   date: Date;
+  nineHoleRound: boolean;
 }

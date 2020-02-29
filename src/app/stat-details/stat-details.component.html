@@ -1,21 +1,30 @@
-<div class="round-input-fields">
-  <div class="stat-title">
-    <h3>{{ title }}</h3>
-  </div>
-  <ion-content>
-    <div class="landing-page-content">
-      <div *ngIf="statDetails.detailsPackage.length > 0">
-        <div *ngFor="let stat of statDetails.detailsPackage">
-          <p class="stat-details">
-            <span class="details">{{ stat.date |  date: 'M/dd/yyyy' }}</span>
-            <span class="details">{{ stat.course }}</span>
-            <span class="stat-span">{{ stat.stat }}</span>
-          </p>
+<ion-content>
+  <div class="round-input-fields">
+    <div class="stat-title">
+      <h3>{{ title }}</h3>
+    </div>
+      <ion-row>
+        <ion-col>
+          <div class="stat-detail-average">
+            <p class='num-avg'>
+              {{ statDetails.statAverage | number: '1.2-2'}}
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <div class="landing-page-content">
+        <div *ngIf="statDetails.detailsPackage.length > 0">
+          <div *ngFor="let stat of statDetails.detailsPackage">
+            <p class="stat-details">
+              <span class="details">{{ stat.date |  date: 'M/dd/yyyy' }}</span>
+              <span class="details">{{ stat.course }}</span>
+              <span class="stat-span">{{ stat.stat }}</span>
+            </p>
+          </div>
         </div>
       </div>
+    <div class="button-container back-to-stats-btn">
+      <ion-button expand="full" color="medium" size="medium" (click)="cancel()">Back To Stats</ion-button>
     </div>
-  </ion-content>
-  <div class="button-container back-to-stats-btn">
-    <ion-button expand="full" color="medium" size="medium" (click)="cancel()">Back To Stats</ion-button>
   </div>
-</div>
+</ion-content>

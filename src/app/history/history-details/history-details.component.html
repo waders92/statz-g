@@ -1,5 +1,17 @@
 <div class="landing-page-content">
   <h3>Round Details</h3>
+  <div *ngIf="round.nineHoleRound; else showEighteenBanner">
+    <p class="nine-hole-round-banner">
+      9 Hole Round
+    </p>
+  </div>
+  <ng-template #showEighteenBanner>
+    <div>
+      <p class="show-eighteen-banner">
+        18 Hole Round
+      </p>
+    </div>
+  </ng-template>
   <p *ngIf="round">
     Date: {{ round.date |  date: 'M/dd/yyyy' }}<br> 
     Course: {{ round.course }}<br>

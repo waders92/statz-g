@@ -1,0 +1,15 @@
+.banner {
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.nine-hole-round-banner {
+  @extend .banner;
+  background-color: blue;
+}
+
+.show-eighteen-banner {
+  @extend .banner;
+  background-color: green;
+}

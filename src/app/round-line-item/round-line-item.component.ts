@@ -13,6 +13,7 @@ export class RoundLineItemComponent implements OnInit {
   public roundItems;
   public roundData;
   public date;
+  public nineHoleRound;
   public isEdit = false;
   public statsDict: { [key: string]: number | string; } = {};
 
@@ -23,6 +24,7 @@ export class RoundLineItemComponent implements OnInit {
     if (this.roundData) {
       this.isEdit = true;
       this.date = this.roundData.date;
+      this.nineHoleRound = this.roundData.nineHoleRound;
       this.constructStatsDict();
     }
   }
@@ -38,6 +40,7 @@ export class RoundLineItemComponent implements OnInit {
     }
 
     this.statsDict[RoundStatCategories.Date] = this.date;
+    this.statsDict[RoundStatCategories.NineHoleRound] = this.nineHoleRound;
 
     this.modalController.dismiss({
       dismissed: true,
@@ -60,5 +63,6 @@ export class RoundLineItemComponent implements OnInit {
     this.statsDict[RoundStatCategories.TotalBirdies] = round.totalBirdies;
     this.statsDict[RoundStatCategories.TotalPars] = round.totalPars;
     this.statsDict[RoundStatCategories.TotalPutts] = round.totalPutts;
+    this.statsDict[RoundStatCategories.NineHoleRound] = round.nineHoleRound;
   }
 }

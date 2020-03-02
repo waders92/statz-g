@@ -6,6 +6,9 @@ import { AddRound, UpdateRound } from '../actions/round.actions';
 import { NewRoundConverter } from '../new-round/converters/new-round-converter';
 import { RoundDataService } from './round-data-service';
 import { RoundStatCategories } from '../new-round/models/round-type-enums';
+import * as _ from 'lodash';
+import * as moment from 'moment';
+import { IYearlyRounds } from '../stats/models/yearly-rounds';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +76,42 @@ export class RoundLogicService {
     editedRound.totalBirdies = round.totalBirdies;
     editedRound.totalPars = round.totalPars;
     editedRound.nineHoleRound = round.nineHoleRound;
+  }
+
+  public getYearlyRounds(rounds: IRound[]) {
+    const orderedByMonths = _.groupBy(rounds, (rnd) => {
+      const momentDate = moment(rnd.date);
+      return momentDate.month();
+    });
+
+    const orderedByYears = _.groupBy(orderedByMonths, (month) => {
+      const momentDate = moment(month[0].date);
+      return momentDate.year();
+    });
+
+    return orderedByYears;
+  }
+
+  public buildIterable(roundsGroupedByYear: any): IYearlyRounds[] {
+    const result: IYearlyRounds[] = [];
+    // tslint:disable-next-line: forin
+    for (const key in roundsGroupedByYear) {
+      result.push({
+        year: key,
+        rounds: this.extractRounds(roundsGroupedByYear[key])
+      });
+    }
+
+    return result;
+  }
+
+  private extractRounds(dict: any): IRound[] {
+    const result: IRound[] = [];
+    dict.forEach((val) => {
+      const rnd = val.pop();
+      result.push(rnd);
+    });
+
+    return result;
   }
 }

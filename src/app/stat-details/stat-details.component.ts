@@ -11,14 +11,13 @@ import { IStatPackageAverages } from '../stats/models/stat-package-averages';
 })
 export class StatDetailsComponent implements OnInit {
 
-  constructor(private modalController: ModalController, private statService: StatsLogicService) { }
+  constructor(private modalController: ModalController) { }
 
   public title: string;
   public statDetails: IStatPackageAverages;
 
   ngOnInit() {
-    const tempTitle = this.statDetails.detailsPackage[0].statType;
-    this.title = this.statService.populateDetailsTitle(tempTitle);
+    this.title = this.statDetails.statTitle;
   }
 
   cancel() {

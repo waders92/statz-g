@@ -49,31 +49,29 @@ export class StatsLogicService {
     }
   }
 
-  public populateDetailsTitle(tempTitle: string): string {
-    switch (tempTitle) {
-      case RoundKeyValues.Score:
-        return StatDisplayPackageTitleEnum.Scoring;
-      case RoundKeyValues.Greens:
-        return StatDisplayPackageTitleEnum.Greens;
-      case RoundKeyValues.Fwys:
-        return StatDisplayPackageTitleEnum.Fwys;
-      case RoundKeyValues.Putts:
-        return StatDisplayPackageTitleEnum.Putting;
-      case RoundKeyValues.Birdies:
-        return StatDisplayPackageTitleEnum.Birdies;
-      case RoundKeyValues.Pars:
-        return StatDisplayPackageTitleEnum.Pars;
-    }
-  }
-
   public appendAverageToCategory(statsPackage: IStatDisplayPackage, specificStatPackages: ISpecificStatPackage[]): IStatPackageAverages {
    const statType = specificStatPackages[0].statType;
    const statAverage = statsPackage[statType];
 
    return {
      statAverage,
+     statType,
      detailsPackage: specificStatPackages
    };
+  }
+
+  public appendPercentageOptionToCategory(statPackage: IStatPackageAverages): IStatPackageAverages {
+    const shouldAppendPercentage = this.isCategoryPercentType(statPackage.statType);
+    statPackage.isPercentageStat = shouldAppendPercentage;
+    return statPackage;
+  }
+
+  private isCategoryPercentType(input: string): boolean {
+    if (input.includes('greens') || input.includes('fairways')) {
+      return true;
+    }
+
+    return false;
   }
 
   private calculateScoringAverage(rounds: IRound[]): number {

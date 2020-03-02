@@ -7,7 +7,7 @@
         <ion-col>
           <div class="stat-detail-average">
             <p class='num-avg'>
-              {{ statDetails.statAverage | number: '1.2-2'}}
+              {{ statDetails.statAverage | number: '1.2-2'}}<span *ngIf="statDetails.isPercentageStat">%</span>
             </p>
           </div>
         </ion-col>

@@ -12,3 +12,29 @@
   font-weight: bolder;
   text-align: center;
 }
+
+.month {
+  font-weight: bold;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+.past-year-links {
+  text-align: center;
+
+  span {
+    margin-top: 10px;
+  }
+}
+
+.specific-year {
+  margin: 20px;
+}
+
+.show-underline {
+  border-bottom: 2px solid blue;
+}
+
+.month-review {
+  margin-bottom: 25px;
+}

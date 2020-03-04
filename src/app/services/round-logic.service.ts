@@ -9,6 +9,8 @@ import { RoundStatCategories } from '../new-round/models/round-type-enums';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { IYearlyRounds } from '../stats/models/yearly-rounds';
+import { Months } from '../stats/models/month-enums';
+import { IMonthlyRounds } from '../stats/models/monthly-rounds';
 
 @Injectable({
   providedIn: 'root'
@@ -78,40 +80,120 @@ export class RoundLogicService {
     editedRound.nineHoleRound = round.nineHoleRound;
   }
 
-  public getYearlyRounds(rounds: IRound[]) {
-    const orderedByMonths = _.groupBy(rounds, (rnd) => {
-      const momentDate = moment(rnd.date);
-      return momentDate.month();
+  public getMonthlyRoundsByYear(rounds: IRound[], selectedYear: number) {
+    const currentYearRounds: IRound[] = [];
+    rounds.map((rnd) => {
+      const roundString = rnd.date.toString();
+      const roundYear = Number(roundString.substring(0, 4));
+      if (selectedYear === roundYear) {
+        currentYearRounds.push(rnd);
+      }
     });
 
-    const orderedByYears = _.groupBy(orderedByMonths, (month) => {
-      const momentDate = moment(month[0].date);
-      return momentDate.year();
-    });
-
-    return orderedByYears;
+    const result = this.getMonthlyRounds(currentYearRounds, selectedYear);
+    return result;
   }
 
-  public buildIterable(roundsGroupedByYear: any): IYearlyRounds[] {
-    const result: IYearlyRounds[] = [];
-    // tslint:disable-next-line: forin
-    for (const key in roundsGroupedByYear) {
-      result.push({
-        year: key,
-        rounds: this.extractRounds(roundsGroupedByYear[key])
-      });
+  public getAvailableYears(rounds: IRound[]) {
+    const dates = rounds.map(r => r.date);
+    const dateArr = [];
+
+    dates.map((date) => {
+      const roundString = date.toString();
+      const roundYear = Number(roundString.substring(0, 4));
+      dateArr.push(roundYear);
+    });
+
+    const distinctYears = [...new Set(dateArr)];
+    return distinctYears;
+  }
+
+  getMonthlyRounds(rounds: IRound[], currentYear: number): IYearlyRounds {
+    let result = this.buildEmptyYearlyRoundObject(rounds);
+    rounds.forEach((round) => {
+      const momentDate = moment(round.date);
+      const numMonth = momentDate.month();
+      const stringMonth = this.convertDateMonthToString(numMonth);
+      result.year = currentYear.toString();
+      result = this.buildMonthlyRounds(stringMonth, round, result);
+    });
+
+    return result;
+  }
+
+  buildEmptyYearlyRoundObject(rounds: IRound[]): IYearlyRounds {
+    return {
+      year: '',
+      months: [],
+      rounds
+    };
+  }
+
+  buildMonthlyRounds(month: string, round: IRound, result: IYearlyRounds): IYearlyRounds {
+    const monthlyResult = { title: '', rounds: [] } as IMonthlyRounds;
+    switch (month) {
+      case Months.January:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.February:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.March:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.April:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.May:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.June:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.July:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.August:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.September:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.October:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.November:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+      case Months.December:
+        monthlyResult.title = month;
+        monthlyResult.rounds.push(round);
+        break;
+    }
+
+    const monthExists = result.months.filter(m => m.title === monthlyResult.title).pop();
+    if (monthExists) {
+      monthExists.rounds.push(monthlyResult.rounds[0]);
+
+    } else {
+       result.months.push(monthlyResult);
     }
 
     return result;
   }
 
-  private extractRounds(dict: any): IRound[] {
-    const result: IRound[] = [];
-    dict.forEach((val) => {
-      const rnd = val.pop();
-      result.push(rnd);
-    });
-
-    return result;
+  convertDateMonthToString(num: number): string {
+    return moment().month(num ).format('MMMM');
   }
-}
+ }

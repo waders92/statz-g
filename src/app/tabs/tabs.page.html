@@ -6,17 +6,17 @@
       <ion-label>Home</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="new-round" [ngClass]="{'disabled': !isCurrentUserLoggedIn}">
+    <ion-tab-button tab="new-round" (click)="presentNewRoundForm()" *ngIf="isCurrentUserLoggedIn">
       <ion-icon name="add-circle-outline"></ion-icon>
       <ion-label>New Round</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="history" [ngClass]="{'disabled': !isCurrentUserLoggedIn}">
+    <ion-tab-button tab="history" *ngIf="isCurrentUserLoggedIn">
       <ion-icon name="list"></ion-icon>
       <ion-label>History</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="stats" [ngClass]="{'disabled': !isCurrentUserLoggedIn}">
+    <ion-tab-button tab="stats" *ngIf="isCurrentUserLoggedIn">
       <ion-icon name="stats"></ion-icon>
       <ion-label>Stats</ion-label>
     </ion-tab-button>

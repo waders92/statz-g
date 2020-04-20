@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -21,9 +22,7 @@ const routes: Routes = [
         path: 'new-round',
         children: [
           {
-            path: '',
-            loadChildren: () =>
-              import('../new-round/new-round.module').then(m => m.NewRoundModule)
+            path: ''
           }
         ]
       },

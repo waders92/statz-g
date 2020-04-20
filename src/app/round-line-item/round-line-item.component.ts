@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+
 import { RoundStatCategories } from '../new-round/models/round-type-enums';
 import { RoundLogicService } from '../services/round-logic.service';
 
@@ -18,7 +20,7 @@ export class RoundLineItemComponent implements OnInit {
   public statsDict: { [key: string]: number | string; } = {};
 
 
-  constructor(private modalController: ModalController, private logicService: RoundLogicService) { }
+  constructor(private modalController: ModalController, private logicService: RoundLogicService, private router: Router) { }
 
   ngOnInit() {
     if (this.roundData) {
@@ -50,6 +52,7 @@ export class RoundLineItemComponent implements OnInit {
 
   public cancel() {
     this.modalController.dismiss();
+    this.router.navigateByUrl('/');
   }
 
   private constructStatsDict(): void {

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { UserLogicService } from '../services/user-logic-service';
 import { Router } from '@angular/router';
+
+import { roundPropertiesAndInputValues } from '../new-round/models/round-type-values';
+import { ModalService } from '../services/modal.service';
 import { RoundLogicService } from '../services/round-logic.service';
+import { UserLogicService } from '../services/user-logic-service';
+import { UserService } from '../services/user.service';
 import { ICurrentUserResults } from '../user/models/current-user.results.model';
 
 @Component({
@@ -13,12 +16,15 @@ import { ICurrentUserResults } from '../user/models/current-user.results.model';
 export class TabsPage implements OnInit {
 
   isCurrentUserLoggedIn: boolean;
+  private user: ICurrentUserResults;
 
   constructor(
     private userService: UserService,
     private userLogicService: UserLogicService,
     private router: Router,
-    private roundService: RoundLogicService) {}
+    private roundService: RoundLogicService,
+    private modalService: ModalService) {}
+
 
   ngOnInit() {
     this.userService.currentUser$.subscribe((user: ICurrentUserResults) => {
@@ -29,10 +35,16 @@ export class TabsPage implements OnInit {
           break;
 
         default:
+          this.user = user;
           this.isCurrentUserLoggedIn = true;
           this.roundService.load(user.user._id);
       }
     });
+  }
+
+  public presentNewRoundForm() {
+    const roundItems = roundPropertiesAndInputValues();
+    this.modalService.presentNewRoundForm(roundItems, this.user.user._id);
   }
 
   logoutUser() {

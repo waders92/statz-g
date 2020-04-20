@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
-import { RoundLineItemComponent } from '../round-line-item/round-line-item.component';
+
 import { IRound } from '../new-round/models/round';
 import { roundPropertiesAndInputValues } from '../new-round/models/round-type-values';
-import { RoundLogicService } from './round-logic.service';
-import { ISpecificStatPackage } from '../stats/models/specific-stat-package';
+import { RoundLineItemComponent } from '../round-line-item/round-line-item.component';
 import { StatDetailsComponent } from '../stat-details/stat-details.component';
 import { IStatPackageAverages } from '../stats/models/stat-package-averages';
+import { RoundLogicService } from './round-logic.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class ModalService {
   constructor(
     private modalController: ModalController,
     private logicService: RoundLogicService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private router: Router
     ) { }
 
 
@@ -38,6 +40,7 @@ export class ModalService {
         this.logicService.addRound(newRound).subscribe((round) => {
           this.logicService.updateStoreForAdd(round);
           this.showToastForRound();
+          this.router.navigateByUrl('/history');
         });
       }
     });

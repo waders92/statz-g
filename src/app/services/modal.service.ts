@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 
+import { AddRoundComponent } from '../add-round/add-round.component';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { IRound } from '../new-round/models/round';
 import { roundPropertiesAndInputValues } from '../new-round/models/round-type-values';
-import { RoundLineItemComponent } from '../round-line-item/round-line-item.component';
 import { StatDetailsComponent } from '../stat-details/stat-details.component';
 import { IStatPackageAverages } from '../stats/models/stat-package-averages';
 import { RoundLogicService } from './round-logic.service';
@@ -27,7 +27,7 @@ export class ModalService {
 
   public async presentNewRoundForm(roundItemInputs: any, userId: string) {
     const modal = await this.modalController.create({
-      component: RoundLineItemComponent,
+      component: AddRoundComponent,
       componentProps: {
         roundItems: roundItemInputs
       }
@@ -51,7 +51,7 @@ export class ModalService {
 
   public async presentEditRoundForm(round: IRound) {
     const modal = await this.modalController.create({
-      component: RoundLineItemComponent,
+      component: AddRoundComponent,
       componentProps: {
         roundItems: roundPropertiesAndInputValues(),
         roundData: round
@@ -94,7 +94,7 @@ export class ModalService {
     toast.present();
   }
 
-  public async presentNewCourseForm(userId: string) {
+  public async presentNewCourseForm() {
     const modal = await this.modalController.create({
       component: NewCourseComponent
     });

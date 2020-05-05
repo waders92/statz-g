@@ -47,10 +47,6 @@ export class TabsPage implements OnInit {
     this.modalService.presentNewRoundForm(roundItems, this.user.user._id);
   }
 
-  public presentNewCourseForm() {
-    this.modalService.presentNewCourseForm(this.user.user._id);
-  }
-
   logoutUser() {
     this.userService.setCurrentUser(undefined);
     this.router.navigateByUrl('/');

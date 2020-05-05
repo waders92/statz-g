@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserLogicService } from '../services/user-logic-service';
-import { IUser } from './models/user-model';
-import { UserResponse } from './models/user-reponse-enum';
-import { ICurrentUserResults } from './models/current-user.results.model';
 import { Router } from '@angular/router';
+
+import { UserLogicService } from '../services/user-logic-service';
+import { ICurrentUserResults } from './models/current-user.results.model';
+import { UserResponse } from './models/user-reponse-enum';
 
 @Component({
   selector: 'app-user',
@@ -18,7 +18,10 @@ export class UserComponent implements OnInit {
 
   constructor(private service: UserLogicService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.email = 'admin@gmail.com';
+    this.password = 'test';
+  }
 
   login() {
     if (this.service.ensureFormHasFields(this.email, this.password)) {

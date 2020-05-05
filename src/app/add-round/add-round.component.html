@@ -1,0 +1,36 @@
+<ion-content>
+  <div class="round-input-fields">
+    <div>
+      <h3> {{ isEdit ? 'Edit Round' : 'Add New Round' }}</h3>
+    </div>
+    <div>
+      <ion-item>
+        <ion-label position="floating">Date</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+      </ion-item>
+    </div>
+    <div class="course-search">
+      <p>Select A Course</p>
+      <ion-searchbar *ngIf="courses.length === 0" disabled="true" showCancelButton="always"></ion-searchbar>
+      <ion-searchbar *ngIf="courses.length > 0" showCancelButton="always" (ionChange)="onCourseSearch($event)"></ion-searchbar>
+    </div>
+      <ion-list>
+        <div class="course-list" *ngIf="filteredCourses.length === 0 && !noResults">
+          <ion-item *ngFor="let course of courses" (click)="courseSelected(course)">{{ course.name }}</ion-item>
+        </div>
+        <div class="course-list" *ngIf="filteredCourses.length > 0">
+          <ion-item *ngFor="let course of filteredCourses" (click)="courseSelected(course)">{{ course.name }}</ion-item>
+        </div>
+        <div *ngIf="noResults">
+          <p>No Results found</p>
+        </div>
+        <div *ngIf="courses.length === 0">
+          <p>No Courses Available, Add One Below</p>
+        </div>
+      </ion-list>
+      <div class="button-container">
+        <ion-button expand="full" color="medium" size="medium" (click)="addNewCourse()">Add New Course</ion-button>
+        <ion-button expand="full" color="medium" size="medium" (click)="cancel()">Cancel</ion-button>
+      </div>
+  </div>
+</ion-content>

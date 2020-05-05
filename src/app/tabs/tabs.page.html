@@ -21,6 +21,11 @@
       <ion-label>Stats</ion-label>
     </ion-tab-button>
 
+    <ion-tab-button tab="new-course" (click)="presentNewCourseForm()" *ngIf="isCurrentUserLoggedIn">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-label>Add Course</ion-label>
+    </ion-tab-button>
+
     <ion-tab-button tab="user" *ngIf="!isCurrentUserLoggedIn; else logout">
       <ion-icon name="contact"></ion-icon>
       <ion-label>Login</ion-label>

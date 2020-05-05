@@ -47,6 +47,14 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'new-course',
+        children: [
+          {
+            path: ''
+          }
+        ]
+      },
+      {
         path: 'user',
         children: [
           {

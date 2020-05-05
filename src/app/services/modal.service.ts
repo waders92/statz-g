@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 
+import { NewCourseComponent } from '../new-course/new-course.component';
 import { IRound } from '../new-round/models/round';
 import { roundPropertiesAndInputValues } from '../new-round/models/round-type-values';
 import { RoundLineItemComponent } from '../round-line-item/round-line-item.component';
@@ -91,5 +92,20 @@ export class ModalService {
       position: 'bottom'
     });
     toast.present();
+  }
+
+  public async presentNewCourseForm(userId: string) {
+    const modal = await this.modalController.create({
+      component: NewCourseComponent
+    });
+
+    modal.onDidDismiss()
+    .then((data) => {
+      if (data && data.data !== undefined) {
+        alert('closing');
+      }
+    });
+
+    return await modal.present();
   }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonSlides, ModalController } from '@ionic/angular';
 
 import { ICourse } from './models/course';
 import { IGolfHole } from './models/golf-hole';
@@ -22,9 +22,36 @@ export class NewCourseComponent implements OnInit {
     scrollbar: true
   };
 
+  show: { [key: number]: boolean } = {};
+  currentCardIndex = 0;
+
+  @ViewChild('mySlider', { static: true }) slides: IonSlides;
+
 
   ngOnInit() {
     this.holes = populateNewHolesForCourse();
+  }
+
+  showCard(index: number): boolean {
+   return index === this.currentCardIndex ? true : false;
+  }
+
+  nextHole(index: number) {
+    const newIndex = index + 1;
+    if (newIndex > 17) {
+      return;
+    }
+
+    this.currentCardIndex = newIndex;
+  }
+
+  prevHole(index: number) {
+    const newIndex = index - 1;
+    if (newIndex < 0) {
+      return;
+    }
+
+    this.currentCardIndex = newIndex;
   }
 
   public cancel() {
@@ -46,11 +73,6 @@ export class NewCourseComponent implements OnInit {
       alert('Fill in all fields!');
     }
   }
-
-  public move(slide: any) {
-    console.log(slide);
-  }
-
   private verifyData(): boolean {
     let isVerified = true;
 

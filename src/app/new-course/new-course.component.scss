@@ -1,7 +1,14 @@
 ion-slides {
-  height: 500px;
+  max-height: 350px;
+  margin-left: 50px;
 
   ion-slide {
-    height: 500px;
+    max-height: 350px;
+    margin-left: 10px;
+
+    ion-item {
+      text-align: center;
+      border: 1px solid black;
+    }
   }
 }

@@ -25,7 +25,7 @@ export class ModalService {
     ) { }
 
 
-  public async presentNewRoundForm(roundItemInputs: any, userId: string) {
+  public async presentNewRoundForm(roundItemInputs: any, userId?: string) {
     const modal = await this.modalController.create({
       component: AddRoundComponent,
       componentProps: {

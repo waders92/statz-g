@@ -18,12 +18,9 @@ export class NewCourseComponent implements OnInit {
   newCoursePackage = {} as ICourse;
   courseName: string;
   state: string;
-  slideOpts = {
-    scrollbar: true
-  };
-
-  show: { [key: number]: boolean } = {};
   currentCardIndex = 0;
+  firstVisibleHole = 0;
+  lastVisibleHole = 17;
 
   @ViewChild('mySlider', { static: true }) slides: IonSlides;
 
@@ -38,7 +35,7 @@ export class NewCourseComponent implements OnInit {
 
   nextHole(index: number) {
     const newIndex = index + 1;
-    if (newIndex > 17) {
+    if (newIndex > this.lastVisibleHole) {
       return;
     }
 
@@ -47,7 +44,7 @@ export class NewCourseComponent implements OnInit {
 
   prevHole(index: number) {
     const newIndex = index - 1;
-    if (newIndex < 0) {
+    if (newIndex < this.firstVisibleHole) {
       return;
     }
 

@@ -1,14 +1,15 @@
-ion-slides {
-  max-height: 350px;
-  margin-left: 50px;
+ion-card {
+  height: 250px;
+}
 
-  ion-slide {
-    max-height: 350px;
-    margin-left: 10px;
+ion-card-content {
+  padding-top: 0;
+}
 
-    ion-item {
-      text-align: center;
-      border: 1px solid black;
-    }
-  }
+span {
+  display: inline-flex;
+}
+
+.landing-page-content > h3 {
+  margin-bottom: 0px;
 }

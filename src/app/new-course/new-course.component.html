@@ -1,25 +1,23 @@
-
+<ion-content>
   <div class="landing-page-content">
     <h3> {{ 'Add New Course' }}</h3>
-  </div>
-  <div class="course-name">
-    <ion-item>
-      <ion-label position="floating">Course Name</ion-label>
-      <ion-input type="text" [(ngModel)]="courseName"></ion-input>
-    </ion-item>
-  </div>
-  <div class="course-location">
-    <ion-item>
-      <ion-label position="floating">Course State</ion-label>
-      <ion-input type="text" [(ngModel)]="state"></ion-input>
-    </ion-item>
-  </div>
-  <div>
+    <div class="course-name">
+      <ion-item>
+        <ion-label position="floating">Course Name</ion-label>
+        <ion-input type="text" [(ngModel)]="courseName"></ion-input>
+      </ion-item>
+    </div>
+    <div class="course-location">
+      <ion-item>
+        <ion-label position="floating">Course State</ion-label>
+        <ion-input type="text" [(ngModel)]="state"></ion-input>
+      </ion-item>
+    </div>
     <div class="course-holes" *ngFor="let hole of holes; let i = index">
       <ion-card *ngIf="showCard(i)">
           <ion-card-header>
             <ion-card-title>
-              <p>Hole - {{ hole.number }}</p>
+              {{ hole.number }}
             </ion-card-title>
             <ion-card-content>
               <ion-item>
@@ -28,15 +26,17 @@
                 <ion-label position="floating">Par</ion-label>
                 <ion-input type="text" [(ngModel)]="hole.par"></ion-input>
               </ion-item>
+              <span>
+                <ion-button expand="full" color="medium" size="small" (click)="nextHole(i)">Next</ion-button>
+                <ion-button expand="full" color="medium" size="small" (click)="prevHole(i)">Prev</ion-button>
+              </span>
             </ion-card-content>
           </ion-card-header>
-          <ion-button expand="full" color="medium" size="medium" (click)="nextHole(i)">Next</ion-button>
-        <ion-button expand="full" color="medium" size="medium" (click)="prevHole(i)">Prev</ion-button>
       </ion-card>
     </div>
+    <div class="button-container">
+      <ion-button expand="full" color="medium" size="medium" (click)="submit()">Submit</ion-button>
+      <ion-button expand="full" color="medium" size="medium" (click)="cancel()">Cancel</ion-button>
+    </div>
   </div>
-  <div class="button-container">
-    <ion-button expand="full" color="medium" size="medium" (click)="submit()">Submit</ion-button>
-    <ion-button expand="full" color="medium" size="medium" (click)="cancel()">Cancel</ion-button>
-  </div>
-
+</ion-content>

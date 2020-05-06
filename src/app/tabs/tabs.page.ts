@@ -44,7 +44,7 @@ export class TabsPage implements OnInit {
 
   public presentNewRoundForm() {
     const roundItems = roundPropertiesAndInputValues();
-    this.modalService.presentNewRoundForm(roundItems, this.user.user._id);
+    this.modalService.presentNewRoundForm(roundItems);
   }
 
   logoutUser() {

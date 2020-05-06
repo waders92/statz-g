@@ -24,16 +24,7 @@ export class AddRoundComponent implements OnInit {
       { name: 'Grant Park' },
       { name: 'Greenfield Park' },
       { name: 'Whitnall Park' },
-      { name: 'Dretzka Park' },
-      { name: 'Doyne Park' },
-      { name: 'Grant Park' },
-      { name: 'Greenfield Park' },
-      { name: 'Dretzka Park' },
-      { name: 'Doyne Park' },
-      { name: 'Grant Park' },
-      { name: 'Greenfield Park' },
-      { name: 'Dretzka Park' },
-      { name: 'Doyne Park' },
+      { name: 'Dretzka Park' }
     ];
   }
 

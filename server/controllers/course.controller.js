@@ -1,17 +1,25 @@
 const Course = require('../models/course.model');
 
 exports.create = (req, res) => {
+  console.log('here');
   const course = buildCourse(req);
   saveCourse(res, course);
 }
 
 function buildCourse(req) {
-  const holes = req.body.holes;
-  return new Course({
+  const requestHoles = req.body.holes;
+
+  let course = new Course({
     courseName: req.body.courseName,
     state: req.body.state,
-    holes: [holes]
+    holes: []
   });
+
+  requestHoles.forEach(hole => {
+      course.holes.push(hole);
+  });
+
+  return course;
 }
 
 function saveCourse(res, course) {

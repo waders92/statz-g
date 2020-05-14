@@ -11,6 +11,7 @@ const config = require('./config.js');
 const mongoose = require('mongoose');
 require('./routes/round.routes')(app);
 require('./routes/user.routes')(app);
+require('./routes/course.routes')(app);
 require('./config/passport');
 
 mongoose.Promise = global.Promise;

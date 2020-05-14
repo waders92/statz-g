@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides, ModalController } from '@ionic/angular';
+import { IonSlides, ModalController, ToastController } from '@ionic/angular';
 
+import { CourseLogicService } from '../services/course-logic-service';
 import { ICourse } from './models/course';
 import { IGolfHole } from './models/golf-hole';
 import { populateNewHolesForCourse } from './models/populate-holes';
@@ -12,7 +13,10 @@ import { populateNewHolesForCourse } from './models/populate-holes';
 })
 export class NewCourseComponent implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  constructor(
+    private modalController: ModalController,
+    private courseLogicService: CourseLogicService,
+    private toastCtrl: ToastController) { }
 
   holes = [] as IGolfHole[];
   newCoursePackage = {} as ICourse;
@@ -65,7 +69,13 @@ export class NewCourseComponent implements OnInit {
         holes: this.holes
       } as ICourse;
 
-      // send package to service to save
+      this.courseLogicService.addCourse(this.newCoursePackage).subscribe(course => {
+        if (course) {
+          console.log(course);
+          this.showToastForCourse();
+          this.modalController.dismiss();
+        }
+      });
     } else {
       alert('Fill in all fields!');
     }
@@ -82,5 +92,14 @@ export class NewCourseComponent implements OnInit {
 
   private holeDataMissing(): boolean {
     return this.holes.some(hole => hole.par === '' || hole.yardage === '');
+  }
+
+  private async showToastForCourse(): Promise<void> {
+    const toast = await this.toastCtrl.create({
+      message: 'Your round was added and saved!',
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 }

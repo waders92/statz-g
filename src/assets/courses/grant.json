@@ -1,0 +1,98 @@
+{
+  "name": "Grant Park",
+  "tees": [{
+    "white": {
+      "holes": [{
+          "number": "1",
+          "yardage": "303",
+          "par": "4"
+        },
+        {
+          "number": "2",
+          "yardage": "258",
+          "par": "4"
+        },
+        {
+          "number": "3",
+          "yardage": "405",
+          "par": "4"
+        },
+        {
+          "number": "4",
+          "yardage": "307",
+          "par": "4"
+        },
+        {
+          "number": "5",
+          "yardage": "152",
+          "par": "3"
+        },
+        {
+          "number": "6",
+          "yardage": "382",
+          "par": "4"
+        },
+        {
+          "number": "7",
+          "yardage": "206",
+          "par": "3"
+        },
+        {
+          "number": "8",
+          "yardage": "228",
+          "par": "3"
+        },
+        {
+          "number": "9",
+          "yardage": "333",
+          "par": "4"
+        },
+        {
+          "number": "10",
+          "yardage": "319",
+          "par": "4"
+        },
+        {
+          "number": "11",
+          "yardage": "278",
+          "par": "4"
+        },
+        {
+          "number": "12",
+          "yardage": "381",
+          "par": "4"
+        },
+        {
+          "number": "13",
+          "yardage": "277",
+          "par": "4"
+        },
+        {
+          "number": "14",
+          "yardage": "306",
+          "par": "4"
+        },
+        {
+          "number": "15",
+          "yardage": "201",
+          "par": "3"
+        },
+        {
+          "number": "16",
+          "yardage": "357",
+          "par": "4"
+        },
+        {
+          "number": "17",
+          "yardage": "100",
+          "par": "3"
+        },
+        {
+          "number": "18",
+          "yardage": "475",
+          "par": "5"
+        }
+      ]
+    }
+  }]
+}

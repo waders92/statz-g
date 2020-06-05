@@ -1,29 +1,28 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouteReuseStrategy } from "@angular/router";
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
+import { EffectsModule } from "@ngrx/effects";
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
-import { environment } from '../environments/environment';
-import { AddRoundComponent } from './add-round/add-round.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { effects } from './effects';
-import { NewCourseComponent } from './new-course/new-course.component';
-import { NewRoundConverter } from './new-round/converters/new-round-converter';
-import { reducers } from './reducers';
-import { clearState } from './reducers/rounds.reducer';
-import { StatDetailsComponent } from './stat-details/stat-details.component';
+import { environment } from "../environments/environment";
+import { AddRoundComponent } from "./add-round/add-round.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { effects } from "./effects";
+import { NewRoundConverter } from "./new-round/converters/new-round-converter";
+import { reducers } from "./reducers";
+import { clearState } from "./reducers/rounds.reducer";
+import { StatDetailsComponent } from "./stat-details/stat-details.component";
 
 @NgModule({
-  declarations: [AppComponent, AddRoundComponent, StatDetailsComponent, NewCourseComponent],
-  entryComponents: [AddRoundComponent, StatDetailsComponent, NewCourseComponent],
+  declarations: [AppComponent, AddRoundComponent, StatDetailsComponent],
+  entryComponents: [AddRoundComponent, StatDetailsComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -36,14 +35,16 @@ import { StatDetailsComponent } from './stat-details/stat-details.component';
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
-      }
-    }), !environment.production ? StoreDevtoolsModule.instrument() : []],
+      },
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+  ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    NewRoundConverter
+    NewRoundConverter,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

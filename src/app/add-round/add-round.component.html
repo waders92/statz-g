@@ -11,7 +11,6 @@
     </div>
     <div class="course-search">
       <p>Select A Course</p>
-      <ion-searchbar *ngIf="courses.length === 0" disabled="true" showCancelButton="always"></ion-searchbar>
       <ion-searchbar *ngIf="courses.length > 0" showCancelButton="always" (ionChange)="onCourseSearch($event)">
       </ion-searchbar>
     </div>

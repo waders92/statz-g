@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { ModalController, ToastController } from "@ionic/angular";
 
 import { AddRoundComponent } from "../add-round/add-round.component";
-import { NewCourseComponent } from "../new-course/new-course.component";
 import { IRound } from "../new-round/models/round";
 import { roundPropertiesAndInputValues } from "../new-round/models/round-type-values";
 import { StatDetailsComponent } from "../stat-details/stat-details.component";

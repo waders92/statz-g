@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 
 import { HttpClient } from "@angular/common/http";
+import { IRoundBuilder } from "./models/round-builder";
 
 @Component({
   selector: "app-add-round",
@@ -22,13 +23,7 @@ export class AddRoundComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // get list of courses store or service call
-    this.courses = [
-      { name: "Grant Park" },
-      { name: "Greenfield Park" },
-      { name: "Whitnall Park" },
-      { name: "Dretzka Park" },
-    ];
+    this.courses = [{ name: "Grant Park" }, { name: "Whitnall Park" }];
   }
 
   onCourseSearch(event: any) {
@@ -47,10 +42,10 @@ export class AddRoundComponent implements OnInit {
     const splittedCourseString = course.name.toLowerCase().split(/\s(.+)/)[0];
     this.http
       .get(`../assets/courses/${splittedCourseString}.json`)
-      .subscribe((selectedCourse) => {
+      .subscribe((selectedCourse: IRoundBuilder) => {
+        selectedCourse.date = this.date;
         console.log(selectedCourse);
       });
-    // navigate to course input component, pass course
   }
 
   public cancel() {
